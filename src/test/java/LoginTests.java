@@ -22,14 +22,5 @@ public class LoginTests extends BaseTest {
         Assert.assertEquals(driver.getCurrentUrl(), url);
         driver.quit();
         //test changes
-
-
-        {
-            public void loginValidEmailPassword(){
-                ChromeOptions options = new ChromeOptions();
-                options.addArguments("--remote-allow-origins=*");
-        }
-
-        }
     }
 }
