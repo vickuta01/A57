@@ -7,7 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
-@Test(description = "Test registration button ")
+@Test(description = "Test registration button  ")
 public class HomeWork16 extends BaseTest {
 
     public void  registrationNavigation() {
