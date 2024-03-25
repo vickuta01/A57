@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 public class LoginTests extends BaseTest{
     @Test
-    public void loginEmptyEmailPassword(){
+    public void loginEmptyEmailPassword() {
         //added chromeOptions argument bellow to fix websocket error
 
         ChromeOptions options= new ChromeOptions();
@@ -28,7 +28,7 @@ public class LoginTests extends BaseTest{
     }
     @Test
 
-    public void loginValidEmailPassword(){
+    public void loginValidEmailPassword()throws InterruptedException{
         //pre-condition
         ChromeOptions options=new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
@@ -38,20 +38,25 @@ public class LoginTests extends BaseTest{
         //step 1: open browser
         String url="https://qa.koel.app/";
         driver.get(url);
+        Thread.sleep(2000);
         //step 2: enter email
         WebElement emailField= driver.findElement(By.cssSelector("input[type='email']"));
         emailField.clear();
         emailField.sendKeys("demo@class.com");
+        Thread.sleep(2000);
         //step 3: enter password
         WebElement passwordField= driver.findElement(By.cssSelector("input[type='password']"));
         passwordField.clear();
         passwordField.sendKeys("te$t$tudent");
+        Thread.sleep(2000);
         //step 4: click on login
         WebElement loginBtn=driver.findElement(By.cssSelector("button[type='submit']"));
         loginBtn.click();
+        Thread.sleep(2000);
         //step 5: expected vs actual
         WebElement avatarIcon=driver.findElement(By.cssSelector("img[class='avatar']"));
         Assert.assertTrue(avatarIcon.isDisplayed());
+        Thread.sleep(2000);
         //step 6: close browser
         driver.quit();
     }
