@@ -15,6 +15,7 @@ public class LoginTests extends BaseTest {
 //      Added ChromeOptions argument below to fix websocket error
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
+        System.setProperty("webdriver.chrome.driver", "path_to_chromedriver");
 
         WebDriver driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -25,11 +26,12 @@ public class LoginTests extends BaseTest {
         driver.quit();
     }
 
-    @Test
+   @Test
     public void loginValidEmailPassword(){
         //pre-condition
         ChromeOptions options=new ChromeOptions();
         options.addArguments("--allow-remote-origins=*");
+       System.setProperty("webdriver.chrome.driver", "path_to_chromedriver");
         //chrome driver
         WebDriver driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -48,7 +50,7 @@ public class LoginTests extends BaseTest {
         WebElement passwordField= driver.findElement(By.cssSelector("input[type='password']"));
         passwordField.clear();
         passwordField.sendKeys(
-                "te$t$tude");
+                "te$t$tudent");
         //step 4: click on login
         WebElement loginBtn=driver.findElement(By.cssSelector("button[type='submit]"));
         loginBtn.click();
