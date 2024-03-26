@@ -25,6 +25,10 @@ public class BaseTest {
     public void launchBrowser(){
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--disable-notifications");
+        options.addArguments("--incognito");
+        options.addArguments("--start-maximized");
+        options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
 
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -115,5 +119,15 @@ public class BaseTest {
     public void clickOnSaveBtn(){
         WebElement saveBtn = driver.findElement(By.cssSelector("[class='btn-submit']"));
         saveBtn.click();
+    }
+
+    public void clickPlayBtn() throws InterruptedException{
+        WebElement playNextButton = driver.findElement(By.xpath("//i[@data-testid='play-next-btn']"));
+        Thread.sleep(2000);
+        WebElement playButton = driver.findElement(By.xpath("//span[@data-testid='play-btn']"));
+        Thread.sleep(2000);
+        playNextButton.click();
+        playButton.click();
+
     }
 }
