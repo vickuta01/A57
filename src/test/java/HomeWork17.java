@@ -6,9 +6,9 @@ public class HomeWork17 extends BaseTest{
     @Test
     public void addSongToPlaylist()  throws InterruptedException {
 
-        String uniqueName;
+        String playListName = "Test1";
 
-        String expectedAlertMessage;
+        String expectedAlertMessage = "Added 1 song into " + "\"" + playListName + ".\"";
 
         Thread.sleep(1000);
 
@@ -41,14 +41,10 @@ public class HomeWork17 extends BaseTest{
         Thread.sleep(2000);
 
         //Choose the playlist to add to
-        uniqueName = generateUniquePlaylistName();
-        addToPlayList(uniqueName);
-
+        addToPlayList(playListName);
         Thread.sleep(2000);
 
-
         //Verify the notification message
-        expectedAlertMessage = "Created playlist " +"\"" + uniqueName + "." + "\"";
         Assert.assertEquals(getSuccessAlertMessage(), expectedAlertMessage);
 
 

@@ -9,17 +9,11 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
 
 import java.time.Duration;
-import java.util.Random;
-import java.util.UUID;
-import java.util.random.RandomGenerator;
 
 public class BaseTest {
 
     public WebDriver driver;
     public String url = "https://qa.koel.app/";
-
-    Random rand;
-    int randomNum;
 
 
     @BeforeSuite
@@ -33,10 +27,13 @@ public class BaseTest {
         // Added ChromeOptions argument below to fix websocket error
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--disable-notifications");
+        options.addArguments("--incognito");
+        options.addArguments("--start-maximized");
+        options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
 
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().window().maximize();
         navigateToPage();
 
     }
@@ -94,23 +91,11 @@ public class BaseTest {
         addToBtn.click();
     }
 
-    public String generateUniquePlaylistName()
-    {
-        rand = new Random();
-        randomNum = rand.nextInt(1000);
-        randomNum += 1;
-        return ("Test" + randomNum);
-
-    }
-
     public void  addToPlayList(String playListName)
     {
-        WebElement playListNameField = driver.findElement(By.xpath("//section[@id='songResultsWrapper']//input[@placeholder='Playlist name']"));
-        playListNameField.clear();
-        playListNameField.sendKeys(playListName);
-        WebElement saveBtn = driver.findElement(By.xpath("//section[@id='songResultsWrapper']//button[@type='submit']"));
-        saveBtn.click();
-
+        //Created Playlist - 'Test1'
+        WebElement playListNameField = driver.findElement(By.xpath("//section[@id='songResultsWrapper']//li[contains(text(),'Test1')]"));
+        playListNameField.click();
     }
 
     public String getSuccessAlertMessage()
