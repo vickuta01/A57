@@ -15,26 +15,26 @@ public class HomeWork17 extends BaseTest {
         String expectedSongAddedMessage = "Added 1 song into \"karina playlist.\"";
 
 
-navigateToPage();
-provideEmail("karina.usmanova01@testpro.io");
-providePassword("YrEdlRVe");
-clickLoginButton();
-Thread.sleep(2000);
+        navigateToPage();
+        provideEmail("karina.usmanova01@testpro.io");
+        providePassword("YrEdlRVe");
+        clickLoginButton();
+        Thread.sleep(2000);
 
 
-searchSong("fo");
-Thread.sleep(2000);
-clickViewAllButton();
-Thread.sleep(2000);
-selectFirstSong();
-Thread.sleep(2000);
-clickAddToButton();
-Thread.sleep(2000);
-choosePlaylist();
-Thread.sleep(2000);
-Assert.assertEquals(getAddToPlaylistSuccessMsg(),expectedSongAddedMessage);
+        searchSong("fo");
+        Thread.sleep(2000);
+        clickViewAllButton();
+        Thread.sleep(2000);
+        selectFirstSong();
+        Thread.sleep(2000);
+        clickAddToButton();
+        Thread.sleep(2000);
+        choosePlaylist();
+        Thread.sleep(2000);
+        Assert.assertEquals(getAddToPlaylistSuccessMsg(), expectedSongAddedMessage);
 
-}
+    }
 
     public String getAddToPlaylistSuccessMsg() {
         WebElement notification = driver.findElement(By.cssSelector("div.success.show"));

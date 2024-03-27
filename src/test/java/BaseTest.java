@@ -25,6 +25,11 @@ public class BaseTest {
     public void launchBrowser() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--disable-notifications");
+        options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--incognito");
+        options.addArguments("--start-maximized");
+        options.setExperimentalOption("excludeSwitches",new String[]{"enable-automation"});
 
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
