@@ -15,15 +15,13 @@ public class BaseTest {
     public WebDriver driver;
     public String url = "https://qa.koel.app/";
 
-
     @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
 
     @BeforeMethod
-    public void launchBrowser()
-    {
+    public void launchBrowser() throws InterruptedException {
         // Added ChromeOptions argument below to fix websocket error
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
@@ -35,6 +33,7 @@ public class BaseTest {
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         navigateToPage();
+        Thread.sleep(1000);
 
     }
 
@@ -104,5 +103,19 @@ public class BaseTest {
         return successAlertMessage.getText();
     }
 
+    public void playNextSong() throws InterruptedException
+    {
+        WebElement playerControlsBtn = driver.findElement(By.cssSelector("#mainFooter div[class='side player-controls']"));
+        playerControlsBtn.click();
+        Thread.sleep(1000);
+        WebElement playNextSongBtn = driver.findElement(By.cssSelector("#mainFooter span[class='play']"));
+        playNextSongBtn.click();
+    }
+
+    public boolean isSoundBarVisible()
+    {
+        WebElement soundBar = driver.findElement(By.cssSelector("img[alt='Sound bars']"));
+        return soundBar.isDisplayed();
+    }
 
 }
