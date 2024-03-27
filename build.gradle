@@ -15,6 +15,11 @@ dependencies {
     testImplementation 'io.github.bonigarcia:webdrivermanager:5.7.0'
     implementation group: 'com.github.javafaker', name: 'javafaker', version: '1.0.2'
 }
+test {
+    useTestNG() {
+        suites "src/test/resources/TestNG.xml"
+    }
+}
 
 
 
