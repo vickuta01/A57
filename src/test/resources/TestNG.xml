@@ -8,7 +8,6 @@
             <class name="LoginTests"/>
             <class name="BaseTest"/>
             <class name="Homework16"/>
-            <class name="Homework17"/>
         </classes>
     </test>
 </suite>

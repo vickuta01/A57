@@ -25,7 +25,7 @@ public class Homework17 extends BaseTest {
         //Creation of new playlist with selected song
         WebElement playlistNameFld = driver.findElement(By.cssSelector("#songResultsWrapper [required]"));
         playlistNameFld.click();
-        playlistNameFld.sendKeys("Great Music_777");
+        playlistNameFld.sendKeys("Great Music_324");
         WebElement savePlaylistBtn = driver.findElement(By.cssSelector("#songResultsWrapper [type='submit']"));
         savePlaylistBtn.click();
         //assertion - success banner
