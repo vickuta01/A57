@@ -1,3 +1,6 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
@@ -17,7 +20,6 @@ public class Homework16 extends BaseTest {
 
         WebElement registrationLink = driver.findElement(By.cssSelector("(href='registration')"));
         registrationLink.click();
-
         String url = "https://qa.koel.app/";
         driver.get(url);
         Assert.assertEquals(driver.getCurrentUrl(), url);
