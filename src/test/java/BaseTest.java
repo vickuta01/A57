@@ -7,13 +7,16 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Parameters;
 
 import java.time.Duration;
 
 public class BaseTest {
 
     public WebDriver driver;
-    public String url = "https://qa.koel.app/";
+    public String url;
+
+    //= "https://qa.koel.app/";
 
     @BeforeSuite
     static void setupClass() {
@@ -21,7 +24,8 @@ public class BaseTest {
     }
 
     @BeforeMethod
-    public void launchBrowser() throws InterruptedException {
+    @Parameters({"BaseURL"})
+    public void launchBrowser(String baseURL) throws InterruptedException {
         // Added ChromeOptions argument below to fix websocket error
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
@@ -32,6 +36,7 @@ public class BaseTest {
 
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        url = baseURL;
         navigateToPage();
         Thread.sleep(1000);
 
@@ -117,5 +122,15 @@ public class BaseTest {
         WebElement soundBar = driver.findElement(By.cssSelector("img[alt='Sound bars']"));
         return soundBar.isDisplayed();
     }
+
+    public void deleteFromPlaylist(String playList) throws InterruptedException {
+        //Delete Playlist - 'Test1'
+        WebElement playListNameElement = driver.findElement(By.xpath("//section[@id='playlists']//a[text()='" + playList + "']"));
+        playListNameElement.click();
+        WebElement deletePlaylist= driver.findElement(By.cssSelector("button[class='del btn-delete-playlist']"));
+        deletePlaylist.click();
+
+    }
+
 
 }
