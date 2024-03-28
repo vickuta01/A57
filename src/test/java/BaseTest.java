@@ -7,13 +7,14 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Parameters;
 
 import java.time.Duration;
 import java.util.UUID;
 
 public class BaseTest {
     public WebDriver driver;
-    public String url = "https://qa.koel.app/";
+    public String url = null;
 
     @BeforeSuite
     static void setupClass() {
@@ -22,7 +23,8 @@ public class BaseTest {
 
 
     @BeforeMethod
-    public void launchBrowser(){
+    @Parameters({"BaseUrl"})
+    public void launchBrowser(String BaseURL){
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-notifications");
@@ -33,7 +35,8 @@ public class BaseTest {
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
-        navigateToPage();
+        url = BaseURL;
+        driver.get(url);
     }
     @AfterMethod
     public void closeBrowser(){
@@ -56,6 +59,7 @@ public class BaseTest {
     }
 
     public void navigateToPage() {
+        String url = "https://qa.koel.app/";
         driver.get(url);
     }
 
@@ -129,5 +133,16 @@ public class BaseTest {
         playNextButton.click();
         playButton.click();
 
+    }
+
+    public void clickDeletePlaylistBtn() throws InterruptedException{
+        WebElement deletePlaylistBtn = driver.findElement(By.cssSelector("button.del.btn-delete-playlist"));
+        deletePlaylistBtn.click();
+        Thread.sleep(3000);
+    }
+
+    public void clickAnyPlaylist() {
+        WebElement clickPlaylist = driver.findElement(By.cssSelector(".playlist:nth-child(3)"));
+        clickPlaylist.click();
     }
 }
