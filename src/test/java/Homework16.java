@@ -17,13 +17,13 @@ class Homework16 extends BaseTest {
                 WebDriver driver = new ChromeDriver(options);
                 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 
-                String url = "https://qa.koel.app";
+                String url = "https://qa.koel.app/";
                 driver.get(url);
 
                 WebElement registrationLink = driver.findElement(By.cssSelector("[href = 'registration']"));
                 registrationLink.click();
 
-                String registrationUrl = "https://qa.koel.app/registration";
+                String registrationUrl = "https://qa.koel.app/registration/";
                 Assert.assertEquals(driver.getCurrentUrl(), url);
                 driver.quit();
                 //commentingout
