@@ -8,7 +8,6 @@ public class HomeWork18 extends BaseTest {
     @Test
     public void playSong() throws InterruptedException {
 
-
         navigateToPage();
         provideEmail("karina.usmanova01@testpro.io");
         providePassword("YrEdlRVe");
@@ -19,14 +18,13 @@ public class HomeWork18 extends BaseTest {
         Thread.sleep(2000);
         clickPlayButton();
         Thread.sleep(2000);
-        showPauseBtn();
-        Thread.sleep(2000);
-        boolean verifyPauseBtn = driver.findElement(By.xpath("//div[@class='side player-controls']//i[@class='fa fa-pause']")).isDisplayed();
+        Assert.assertTrue(isSongPlaying());
+       
     }
 
-    public void showPauseBtn() {
+    public boolean isSongPlaying() {
         WebElement pauseBtn = driver.findElement(By.xpath("//div[@class='side player-controls']//i[@class='fa fa-pause']"));
-        pauseBtn.isDisplayed();
+        return pauseBtn.isDisplayed();
     }
 
     public void clickPlayButton() {
