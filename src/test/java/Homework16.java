@@ -7,7 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.time.Duration;
 
-class Homework16 extends BaseTest {
+public class Homework16 extends BaseTest {
 
         @Test
         public void registrationNavigation() {
@@ -17,7 +17,7 @@ class Homework16 extends BaseTest {
                 WebDriver driver = new ChromeDriver(options);
                 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 
-                String url = "https://qa.koel.app";
+                String url = "https://qa.koel.app/";
                 driver.get(url);
 
                 WebElement registrationLink = driver.findElement(By.cssSelector("[href = 'registration']"));
@@ -26,7 +26,7 @@ class Homework16 extends BaseTest {
                 String registrationUrl = "https://qa.koel.app/registration";
                 Assert.assertEquals(driver.getCurrentUrl(), url);
                 driver.quit();
-                //commentingout
+
 
         }
 }
