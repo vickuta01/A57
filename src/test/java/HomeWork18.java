@@ -8,7 +8,6 @@ public class HomeWork18 extends BaseTest {
     @Test
     public void playSong() throws InterruptedException {
 
-        navigateToPage();
         provideEmail("karina.usmanova01@testpro.io");
         providePassword("YrEdlRVe");
         clickLoginButton();
@@ -19,7 +18,7 @@ public class HomeWork18 extends BaseTest {
         clickPlayButton();
         Thread.sleep(2000);
         Assert.assertTrue(isSongPlaying());
-       
+
     }
 
     public boolean isSongPlaying() {
