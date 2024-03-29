@@ -4,65 +4,51 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.time.Duration;
 
 
-    public class BaseTest {
-
-        public WebDriver driver;
-        public String url = "https://qa.koel.app/";
-
-        @BeforeSuite
-        static void setupClass() {
-            WebDriverManager.chromedriver().setup();
-        }
-
-        @BeforeMethod
-        public void launchBrowser(){
-            ChromeOptions options = new ChromeOptions();
-            options.addArguments("--remote-allow-origins=*");
-            driver = new ChromeDriver(options);
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-            driver.manage().window().maximize();
-            navigateToPage();
-        }
-
-        public void navigateToPage() {
-            //added get() for navigation
-            driver.get(url);
-        }
-        //we are missing a step here to navigate to koel webpage, let's add it
-        @AfterMethod
-        public void closeBrowser(){
-            driver.quit();
-        }
-
-        public void clickLoginBtn() {
-            WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
-            submit.click();
-        }
+public class BaseTest {
+    protected WebDriver driver = null;
 
 
-        public void provideEmail(String email) {
-            WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
-            emailField.clear();
-            emailField.sendKeys(email);
-        }
-        public void providePassword(String password) {
-            WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
-            passwordField.clear();
-           // passwordField.sendKeys();//send keys is empty, no input is being entered
-            passwordField.sendKeys(password); //added password string
-        }
-
-
+    // Setting up WebDriverManager for Chrome before the test suite runs.
+    @BeforeSuite
+    static void setupClass() {
+        WebDriverManager.chromedriver().setup();
     }
 
+    // Method to set up WebDriver with Chrome options before each test method.
+    @BeforeMethod
+    @Parameters("baseUrl")
+    public void setUpDriver(String baseUrl) {
+        // Configuring Chrome options for local testing.
+        ChromeOptions optionsChromeLocal = new ChromeOptions();
+        optionsChromeLocal.addArguments("--disable-notifications", "--remote-allow-origins=*", "--incognito", "--start-maximized", "-lang=en");
+        driver = new ChromeDriver(optionsChromeLocal);
+        // Configuring implicit wait for the driver and navigating to the specified URL.
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.get(baseUrl);
+    }
+
+    // Method to close the browser after each test method.
+    @AfterMethod
+    public void closeBrowser() {
+        driver.quit();
+    }
+
+    // Method for performing login action with provided email and password.
+    public void login(String email, String password) {
+        // Locating email, password, and login button elements and performing login action.
+        WebElement emailInput = driver.findElement(By.cssSelector("[type='email']"));
+        WebElement passwordInput = driver.findElement(By.cssSelector("[type='password']"));
+        WebElement loginButton = driver.findElement(By.cssSelector("[type='submit']"));
+        emailInput.sendKeys(email);
+        passwordInput.sendKeys(password);
+        loginButton.click();
+    }
+}
 
 
 
