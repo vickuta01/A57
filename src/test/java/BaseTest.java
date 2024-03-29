@@ -32,7 +32,6 @@ public class BaseTest {
         options.addArguments("--disable-notifications", "--remote-allow-origins=*", "--incognito", "--start-maximized", "-lang=en");
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().window().minimize();
         driver.get(baseUrl);
     }
 
