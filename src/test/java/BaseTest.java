@@ -32,6 +32,11 @@ import java.time.Duration;
             navigateToPage();
         }
 
+        public void navigateToPage() {
+            //added get() for navigation
+            driver.get(url);
+        }
+        //we are missing a step here to navigate to koel webpage, let's add it
         @AfterMethod
         public void closeBrowser(){
             driver.quit();
@@ -42,21 +47,20 @@ import java.time.Duration;
             submit.click();
         }
 
-        public void providePassword(String password) {
-            WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
-            passwordField.clear();
-            passwordField.sendKeys(password);
-        }
 
         public void provideEmail(String email) {
             WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
             emailField.clear();
             emailField.sendKeys(email);
         }
-
-        public void navigateToPage() {
-            driver.get(url);
+        public void providePassword(String password) {
+            WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
+            passwordField.clear();
+           // passwordField.sendKeys();//send keys is empty, no input is being entered
+            passwordField.sendKeys(password); //added password string
         }
+
+
     }
 
 
