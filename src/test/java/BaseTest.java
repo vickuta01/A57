@@ -29,7 +29,7 @@ public class BaseTest {
 
     @BeforeMethod
     @Parameters({"BaseURL"})
-    public void launchBrowser(String baseURL) throws InterruptedException {
+    public void launchBrowser(String baseURL) {
         // Added ChromeOptions argument below to fix websocket error
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
@@ -113,7 +113,7 @@ public class BaseTest {
         return successAlertMessage.getText();
     }
 
-    public void playNextSong() throws InterruptedException
+    public void playNextSong()
     {
         WebElement playerControlsBtn = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#mainFooter div[class='side player-controls']")));
         playerControlsBtn.click();
@@ -128,7 +128,7 @@ public class BaseTest {
         return soundBar.isDisplayed();
     }
 
-    public void deleteFromPlaylist(String playList) throws InterruptedException {
+    public void deleteFromPlaylist(String playList) {
         //Delete Playlist - 'Test1'
         WebElement playListNameElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//section[@id='playlists']//a[text()='" + playList + "']")));
         playListNameElement.click();

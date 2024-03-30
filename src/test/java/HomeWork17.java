@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 
 public class HomeWork17 extends BaseTest{
     @Test
-    public void addSongToPlaylist()  throws InterruptedException {
+    public void addSongToPlaylist() {
 
         String playListName = "Test1";
 

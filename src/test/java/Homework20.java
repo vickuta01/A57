@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 public class Homework20 extends BaseTest{
 
     @Test
-    public void deletePlaylist() throws InterruptedException {
+    public void deletePlaylist() {
 
         String playListName = "Test1";
 
