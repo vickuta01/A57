@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 public class Homework17 extends BaseTest{
 
     @Test
-    public void addSongToPlaylist() throws InterruptedException{
+    public void addSongToPlaylist() {
 
         String newSongAddedNotification = "Added 1 song into";
         provideEmail("agnes.albertusiak@testpro.io");
