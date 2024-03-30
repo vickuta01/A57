@@ -126,9 +126,9 @@ public class BaseTest {
     }
 
     public void clickPlayBtn() {
-        WebElement playNextButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//i[@data-testid='play-next-btn']")));
-        WebElement playButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@data-testid='play-btn']")));
-        playNextButton.click();
+        WebElement playNextButton = driver.findElement(By.xpath("//i[@data-testid='play-next-btn']"));
+        WebElement playButton = driver.findElement(By.xpath("//span[@data-testid='play-btn']"));
+       playNextButton.click();
         playButton.click();
 
     }
@@ -142,4 +142,14 @@ public class BaseTest {
         WebElement clickPlaylist = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".playlist:nth-child(3)")));
         clickPlaylist.click();
     }
+
+    public void registrationLinkClick() {
+        WebElement registrationLink = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[href='registration']")));
+        registrationLink.click();
+    }
+
+    public boolean isSongPlaying() {
+            WebElement soundBar = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@data-testid='sound-bar-play']")));
+            return soundBar.isDisplayed();
+        }
 }
