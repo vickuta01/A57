@@ -42,8 +42,13 @@ public class BaseTest {
         passwordField.clear();
         passwordField.sendKeys(password);
     }
+    void clickLoginBtn(){
+        WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
+        submit.click();
+    }
 
     public void navigateToPage() {
         driver.get(url);
     }
+
 }

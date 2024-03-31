@@ -3,9 +3,11 @@
 
 <suite name="Homework">
 
-    <test name="L15exercise" preserve-order="false">
+    <test name="LoginTests" preserve-order="false">
         <classes>
-            <class name="L15exercise"/>
+
+            <class name="LoginTests"/>
+
         </classes>
     </test>
 </suite>

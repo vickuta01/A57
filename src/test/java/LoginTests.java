@@ -11,34 +11,34 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 public class LoginTests extends BaseTest{
     @Test
-    public void loginEmptyEmailPassword() {
+    public void loginEmptyEmailPassword() throws InterruptedException {
         //added chromeOptions argument bellow to fix websocket error
+        //step 2: enter email
+        WebElement emailField= driver.findElement(By.cssSelector("input[type='email']"));
+        emailField.clear();
+        emailField.sendKeys("");
+        Thread.sleep(2000);
+        //step 3: enter password
+        WebElement passwordField= driver.findElement(By.cssSelector("input[type='password']"));
+        passwordField.clear();
+        passwordField.sendKeys("te$t$tudent");
+        Thread.sleep(2000);
+        //step 4: click on login
+        WebElement loginBtn=driver.findElement(By.cssSelector("button[type='submit']"));
+        loginBtn.click();
+        Thread.sleep(2000);
+        //step 5: expected vs actual
 
-        ChromeOptions options= new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-
-
-        WebDriver driver=new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        String url="https://qa.koel.app/";
-        driver.get(url);
         Assert.assertEquals(driver.getCurrentUrl(),url);
+        System.out.println("Just Testing Console");
+        Thread.sleep(2000);
+        //step 6: close browser
         driver.quit();
     }
     @Test
 
     public void loginValidEmailPassword()throws InterruptedException{
-        //pre-condition
-        ChromeOptions options=new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        WebDriver driver=new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        //steps
-        //step 1: open browser
-        String url="https://qa.koel.app/";
-        driver.get(url);
-        Thread.sleep(2000);
+
         //step 2: enter email
         WebElement emailField= driver.findElement(By.cssSelector("input[type='email']"));
         emailField.clear();
@@ -64,15 +64,8 @@ public class LoginTests extends BaseTest{
     @Test
     public void loginInvalidEmailPassword() throws InterruptedException{
         //pre-condition
-        ChromeOptions options= new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        WebDriver driver=new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        //steps
-        //step 1: open browser
-        String url="https://qa.koel.app/";
-        driver.get(url);
-        Thread.sleep(2000);
+
+
         //step 2: enter email
         WebElement emailField= driver.findElement(By.cssSelector("input[type='email']"));
         emailField.clear();

@@ -20,19 +20,9 @@ public class Homework17 extends BaseTest{
         //Assertion
         Assert.assertEquals(getAddToPlaylistSuccessMsg(),expectedSongAddedMessage);
 
-
     }
 
-    private void clickLoginBtn() {
-        WebElement emailField= driver.findElement(By.cssSelector("input[type='email']"));
-        emailField.clear();
-        emailField.sendKeys("demo@class.com");
-        WebElement passwordField= driver.findElement(By.cssSelector("input[type='password']"));
-        passwordField.clear();
-        passwordField.sendKeys("te$t$tudent");
-        WebElement loginBtn=driver.findElement(By.cssSelector("button[type='submit']"));
-        loginBtn.click();
-    }
+
 
     public String getAddToPlaylistSuccessMsg(){
         WebElement notification = driver.findElement(By.cssSelector("div.success.show"));
