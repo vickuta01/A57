@@ -8,8 +8,8 @@ public class Homework18 extends BaseTest{
     @Test
     public void playSong() throws InterruptedException {
         //Login
-        provideEmail("demo@class.com");
-        providePassword("te$t$tudent");
+        provideEmail("nemanja.sijacic@testpro.io");
+        providePassword("Vojvodina.021");
         clickLoginBtn();
         //Click on Play button
         clickPlay();
