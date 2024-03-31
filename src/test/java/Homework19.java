@@ -4,9 +4,11 @@ import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.time.Duration;
+
 public class Homework19 extends BaseTest{
     @Test
-    public void deletePlaylist() {
+    public void deletePlaylist() throws InterruptedException {
         String expectedMsg = "Deleted playlist \"Test.\"";
         //Steps:
         //Navigate and Login
@@ -21,9 +23,10 @@ public class Homework19 extends BaseTest{
         Assert.assertEquals(deletedPlaylistMsg(),expectedMsg);
     }
 
-    public void clickDeleteBtn() {
+    public void clickDeleteBtn() throws InterruptedException {
         WebElement deletePlaylist = driver.findElement(By.cssSelector(".del.btn-delete-playlist"));
         deletePlaylist.click();
+        Thread.sleep(Duration.ofMillis(2000));
     }
 
     public void clickThePlaylist() {

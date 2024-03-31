@@ -5,8 +5,6 @@
     <parameter name="BaseURL" value="https://qa.koel.app/"></parameter>
     <test name="Example Test" preserve-order="false">
         <classes>
-            <class name="LoginTests"/>
-            <class name="BaseTest"/>
             <class name="Homework19"/>
             <!--<class name="ProfileTest"/>-->
         </classes>
