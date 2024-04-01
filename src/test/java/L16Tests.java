@@ -4,23 +4,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
 
 public class L16Tests extends BaseTest{
-
-
-    @BeforeMethod
-    public void launchBrowser(){
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().window().maximize();
-        navigateToPage();
-    }
 
 
     @Test(enabled = false,description = "Test skipped for a moment.")
@@ -94,6 +82,9 @@ public class L16Tests extends BaseTest{
         Assert.assertTrue(avatarIcon.isDisplayed());
     }
 
+
+
+
     @Test
     public void loginInvalidEmailPassword(){
         navigateToPage();
@@ -105,8 +96,28 @@ public class L16Tests extends BaseTest{
 
     }
 
+
+
+    public void provideEmail(String email){
+        WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
+        emailField.clear();
+        emailField.sendKeys(email);
+    }
+
+    public void providePassword(String password){
+        WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
+        passwordField.clear();
+        passwordField.sendKeys(password);
+
+    }
+    public void clickLoginBtn() {
+        WebElement loginBtn = driver.findElement(By.cssSelector("button[type='submit']"));
+        loginBtn.click();
+    }
+
     public void clickOnLoginBtn(){
         WebElement loginBtn = driver.findElement(By.cssSelector("button[type='submit']"));
         loginBtn.click();
     }
+
 }
