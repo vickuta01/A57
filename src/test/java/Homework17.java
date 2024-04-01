@@ -11,8 +11,13 @@ public class Homework17 extends BaseTest{
         provideEmail("demo@class.com");
         providePassword("te$t$tudent");
         clickLoginBtn();
+
         Thread.sleep(4000);
         searchSong("Dark");
+        Thread.sleep(2000);
+        clickViewAllBtn();
+        Thread.sleep(2000);
+        selectFirstSongResult();
         Thread.sleep(2000);
         clickAddToBtn();
         Thread.sleep(4000);
@@ -31,12 +36,12 @@ public class Homework17 extends BaseTest{
 
     }
     public void choosePlaylist(){
-        WebElement playlist= driver.findElement(By.xpath("//section[@id='songResultsWrapper']/li[contains(text(),'Test Pro Playlist']"));
+        WebElement playlist= driver.findElement(By.xpath("//section[@id='songResultsWrapper']//li[contains(text(),'Test Pro Playlist']"));
         playlist.click();
     }
     public void clickAddToBtn(){
 
-        WebElement addToBtn = driver.findElement(By.xpath("//section[@id='songsWrapper']//button[@data-test='add-to-btn']"));
+        WebElement addToBtn = driver.findElement(By.xpath("//section[@id='songResultsWrapper']//button[@data-test='add-to-btn']"));
         addToBtn.click();
     }
     public void selectFirstSongResult(){
