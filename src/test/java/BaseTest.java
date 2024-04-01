@@ -12,10 +12,11 @@ import java.time.Duration;
 
 public class BaseTest {
 
-    public WebDriver driver;
+    public WebDriver driver=null;
     public String url="https://qa.koel.app/";
+
     @BeforeSuite
-    static void setupClass() {
+     void setupClass() {
         WebDriverManager.chromedriver().setup();
 
 
@@ -28,22 +29,35 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
         navigateToPage();
+
     }
-    @AfterMethod
-    public void closeBrowser(){driver.quit();
+
+   public void navigateToPage() {
+        driver.get(url);
     }
-    public void provideEmail(String email){
-        WebElement emailField=driver.findElement(By.cssSelector("input[type='email']"));
+    void provideEmail(String email){
+        WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
         emailField.clear();
         emailField.sendKeys(email);
+
     }
-    public void providePassword(String password){
+    void providePassword(String password){
         WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
         passwordField.clear();
         passwordField.sendKeys(password);
+    };
+    void clickLoginBtn(){
+        WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
+        submit.click();
     }
 
-    public void navigateToPage() {
-        driver.get(url);
+
+    @AfterMethod
+
+    public void closeBrowser(){
+        driver.quit();
     }
+
+
+
 }
