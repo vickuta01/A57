@@ -19,7 +19,7 @@ public class Homework19 extends BaseTest{
      Assert.assertEquals(actualResult, expectedResult);
     }
 
-    private String successResult() {
+    public String successResult() {
         WebElement successResultElement = driver.findElement(By.xpath("//div[@class= 'success show']"));
         return successResultElement.getText();
     }
@@ -27,6 +27,7 @@ public class Homework19 extends BaseTest{
     public void clickDeleteBtn() {
         WebElement clickDeleteBtn = driver.findElement(By.xpath("//button[@title= 'Delete this playlist']"));
         clickDeleteBtn.click();
+
     }
 
     public void clickPlayList() {
