@@ -1,4 +1,4 @@
-/*import org.openqa.selenium.By;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -41,8 +41,8 @@ public class ProfileTests extends BaseTest {
           String newName = profile.getText();
           Assert.assertEquals(newName, name);
      }
-}*/
-import org.openqa.selenium.By;
+}
+/*import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -109,4 +109,4 @@ public class ProfileTests extends BaseTest{
      }
 
 
-}
+}*/
