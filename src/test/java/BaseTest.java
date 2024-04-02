@@ -63,4 +63,15 @@ public class BaseTest {
         String newName = faker.name().firstName();
         return newName;
     }
+    public String generateRandomPlaylistName(){
+        Faker faker = new Faker(new Locale("en-US"));
+        String newName = faker.address().country();
+        return newName;
+    }
+
+    public void login(String email,String password) {
+        enterEmail(email);
+        enterPassword(password);
+        clickLoginBtn();
+    }
 }
