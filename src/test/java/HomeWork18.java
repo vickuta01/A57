@@ -7,24 +7,22 @@ import org.testng.annotations.Test;
 public class HomeWork18 extends BaseTest {
 
     @Test
-    public void playSong throws InterruptedExceptionth () {
+    public void playSong  () {
         //GIVEN
-        provideEmail("elzat.nurmanbetova@testpro.io");
-        Thread.sleep(2000);
-        providePassword("kochkor123-Q!");
-        Thread.sleep(2000);
+        provideEmail("demo@class.com");
+
+        providePassword("te$t$tudent");
 
         clickLoginBtn();
-        Thread.sleep(2000);
 
         Assert.assertTrue(isSongPlays());
 
     }
      //THEN
-    public void clickPlay throws InterruptedException() {
-        WebElement playNextBtn = driver.findElement(By.xpath("//i[@title='Play next song']"));
+    public void clickPlay () {
+        WebElement playNextBtn = driver.findElement(By.xpath("//i[@data-testid=='play-next-btn']"));
         playNextBtn.click();
-        WebElement playBtn = driver.findElement(By.xpath("//span[@title='Play or resume']"));
+        WebElement playBtn = driver.findElement(By.xpath("//span[@data-testid='play-btn']"));
         playBtn.click();
 
     }
@@ -32,7 +30,6 @@ public class HomeWork18 extends BaseTest {
 
     public boolean isSongPlays (){
         WebElement soundBar = driver.findElement(By.xpath("//div[@data-testid='sound-bar-play']"));
-        soundBar.click();
         return soundBar.isDisplayed();
     }
 }
