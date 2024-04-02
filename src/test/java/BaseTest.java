@@ -7,6 +7,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import com.github.javafaker.Faker;
+import java.util.Locale;
 
 import java.time.Duration;
 
@@ -55,5 +57,10 @@ public class BaseTest {
         passwordField.click();
         passwordField.clear();
         passwordField.sendKeys(password);
+    }
+    public String generateRandomName(){
+        Faker faker = new Faker(new Locale("en-US"));
+        String newName = faker.name().firstName();
+        return newName;
     }
 }
