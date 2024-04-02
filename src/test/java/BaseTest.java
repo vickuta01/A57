@@ -1,9 +1,11 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
@@ -11,13 +13,16 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
 
+import javax.swing.*;
 import java.time.Duration;
 import java.util.UUID;
 
 public class BaseTest {
     public WebDriver driver;
     WebDriverWait wait;
+    public Actions actions= null;
     public String url = null;
+    String newPlaylistName = "Summer2024";
 
     @BeforeSuite
     static void setupClass() {
@@ -41,6 +46,7 @@ public class BaseTest {
         url = BaseURL;
         driver.get(url);
         wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        actions = new Actions(driver);
     }
     @AfterMethod
     public void closeBrowser(){
@@ -124,12 +130,11 @@ public class BaseTest {
         WebElement saveBtn = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[class='btn-submit']")));
         saveBtn.click();
     }
-
-    public void clickPlayBtn() {
-        WebElement playNextButton = driver.findElement(By.xpath("//i[@data-testid='play-next-btn']"));
-        WebElement playButton = driver.findElement(By.xpath("//span[@data-testid='play-btn']"));
-       playNextButton.click();
-        playButton.click();
+  //Mouse Hover
+    public WebElement clickPlayBtn() {
+        WebElement playButton = driver.findElement(By.cssSelector("[data-testid='play-btn']"));
+        actions.moveToElement(playButton).perform();
+        return wait.until(ExpectedConditions.visibilityOf(playButton));
 
     }
 
@@ -152,4 +157,21 @@ public class BaseTest {
             WebElement soundBar = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@data-testid='sound-bar-play']")));
             return soundBar.isDisplayed();
         }
+
+    public void enterNewPlaylistName() {
+        WebElement inputField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
+        inputField.sendKeys(Keys.chord(Keys.CONTROL, "A", Keys.BACK_SPACE));
+        inputField.sendKeys(newPlaylistName);
+        inputField.sendKeys(Keys.ENTER);
+    }
+
+    public void doubleClickPlaylist() {
+        WebElement dblClick = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(3)")));
+        actions.doubleClick(dblClick).perform();
+    }
+
+    public String getRenamePlaylistSuccessMsg(){
+   WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
+   return notification.getText();
+}
 }

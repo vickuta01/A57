@@ -7,7 +7,7 @@ public class Homework18 extends BaseTest{
         provideEmail("agnes.albertusiak@testpro.io");
         providePassword("4Ameryka4aska!");
         clickLoginBtn();
-        clickPlayBtn();
+        clickPlayBtn().click();
         Assert.assertTrue(isSongPlaying());
 
     }
