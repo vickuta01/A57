@@ -12,16 +12,9 @@ public class Homework16 extends BaseTest {
     public void testRegistrationNavigation(){
         // Pre-condition
         // Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
+        //setUpBrowser();
         // Steps
-        String url = "https://qa.koel.app/";
-        driver.get(url);
-
+        openUrl();
         WebElement registrationLink = driver.findElement(By.cssSelector("[href='registration']"));
         registrationLink.click();
 
@@ -30,6 +23,7 @@ public class Homework16 extends BaseTest {
         driver.quit();
 
     }
+
 
 
 }

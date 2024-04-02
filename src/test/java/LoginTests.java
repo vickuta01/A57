@@ -20,7 +20,6 @@ public class LoginTests extends BaseTest {
     public void loginValidEmailPassword() {
         // Pre-condition
         // Added ChromeOptions argument below to fix websocket error
-        setUpBrowser();
         // Steps
         openUrl();
         enterEmail("demo@class.com");
@@ -36,7 +35,6 @@ public class LoginTests extends BaseTest {
     public void loginInvalidEmailValidPassword() throws InterruptedException {
         // Pre-condition
         // Added ChromeOptions argument below to fix websocket error
-        setUpBrowser();
         openUrl();
         // Steps
         enterEmail("invalid@class.com");
@@ -54,7 +52,6 @@ public class LoginTests extends BaseTest {
     public void loginValidEmailEmptyPassword() throws InterruptedException {
         // Pre-condition
         // Added ChromeOptions argument below to fix websocket error
-        setUpBrowser();
         // Steps
         openUrl();
         enterEmail("demo@class.com");
