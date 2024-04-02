@@ -9,23 +9,24 @@ public class HomeWork18 extends BaseTest {
     @Test
     public void playSong  () {
         //GIVEN
-        provideEmail("demo@class.com");
+        provideEmail("elzat.nurmanbetova@testpro.io");
 
-        providePassword("te$t$tudent");
+        providePassword("kochkor123-Q!");
 
         clickLoginBtn();
 
         Assert.assertTrue(isSongPlays());
 
     }
-     //THEN
+     //WHEN
     public void clickPlay () {
-        WebElement playNextBtn = driver.findElement(By.xpath("//i[@data-testid=='play-next-btn']"));
-        playNextBtn.click();
+        WebElement playNextBtn = driver.findElement(By.xpath("//i[@data-testid='play-next-btn']"));
         WebElement playBtn = driver.findElement(By.xpath("//span[@data-testid='play-btn']"));
+        playNextBtn.click();
         playBtn.click();
 
     }
+    //THEN
 
 
     public boolean isSongPlays (){
