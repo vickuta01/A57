@@ -4,53 +4,92 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.*;
-
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.AfterMethod;
 import java.time.Duration;
 
+public class BaseTest{
+    public WebDriver driver;
+    public String url = "https://qa.koel.app/";
 
-public class BaseTest {
-    protected WebDriver driver = null;
-
-
-    // Setting up WebDriverManager for Chrome before the test suite runs.
     @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
 
-    // Method to set up WebDriver with Chrome options before each test method.
     @BeforeMethod
-    @Parameters("baseUrl")
-    public void setUpDriver(String baseUrl) {
-        // Configuring Chrome options for local testing.
-        ChromeOptions optionsChromeLocal = new ChromeOptions();
-        optionsChromeLocal.addArguments("--disable-notifications", "--remote-allow-origins=*", "--incognito", "--start-maximized", "-lang=en");
-        driver = new ChromeDriver(optionsChromeLocal);
-        // Configuring implicit wait for the driver and navigating to the specified URL.
+    public void launchBrowser() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get(baseUrl);
+        driver.manage().window().maximize();
+        navigateToPage();
     }
 
-    // Method to close the browser after each test method.
+    public void navigateToPage() {
+        driver.get(url);
+    }
+
     @AfterMethod
     public void closeBrowser() {
         driver.quit();
     }
 
-    // Method for performing login action with provided email and password.
-    public void login(String email, String password) {
-        // Locating email, password, and login button elements and performing login action.
-        WebElement emailInput = driver.findElement(By.cssSelector("[type='email']"));
-        WebElement passwordInput = driver.findElement(By.cssSelector("[type='password']"));
-        WebElement loginButton = driver.findElement(By.cssSelector("[type='submit']"));
-        emailInput.sendKeys(email);
-        passwordInput.sendKeys(password);
-        loginButton.click();
+    public void provideEmail(String email) {
+        WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
+        emailField.clear();
+        emailField.sendKeys(email);
+    }
+
+    public void providePassword(String password) {
+        WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
+        passwordField.clear();
+        passwordField.sendKeys(password);
+    }
+
+    void clickLoginBtn() {
+        WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
+        submit.click();
+    }
+
+    public void searchSong(String songName) {
+        WebElement searchField = driver.findElement(By.cssSelector("input[type='search']"));
+        searchField.clear();
+        searchField.sendKeys(songName);
+    }
+
+    public void clickViewAll() {
+        WebElement viewAllBtn = driver.findElement(By.cssSelector("section.songs > h1 > button"));
+        viewAllBtn.click();
+
+    }
+
+    public void clickFirstSong() {
+        WebElement firstSong = driver.findElement(By.xpath("//section[@id='songResultsWrapper']//td[@class='title']"));
+        firstSong.click();
+    }
+
+    public void clickAddTo() {
+        WebElement addToBtn = driver.findElement(By.cssSelector("button[class='btn-add-to']"));
+        addToBtn.click();
+    }
+
+    public void addToPlayList(String playListName) {
+        WebElement playListNameField = driver.findElement(By.xpath("//section[@id='songResultsWrapper']//input[@placeholder='Playlist name']"));
+        playListNameField.clear();
+        playListNameField.sendKeys(playListName);
+        WebElement saveBtn = driver.findElement(By.xpath("//section[@id='songResultsWrapper']//button[@type='submit']"));
+        saveBtn.click();
+
+    }
+
+    public String successAlertMessage() {
+        WebElement successAlertMessage = driver.findElement(By.xpath("//div[@class='success show']"));
+        return successAlertMessage.getText();
     }
 }
-
-
 
 
 
