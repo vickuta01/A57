@@ -1,11 +1,3 @@
-<<<<<<< Updated upstream
-import io.github.bonigarcia.wdm.WebDriverManager;
-//import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.BeforeSuite;
-
-public class BaseTest {
-
-=======
 package Homework17;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -24,13 +16,10 @@ public class BaseTest {
     public WebDriver driver;
 
     public String url = "https://qa.koel.app/";
->>>>>>> Stashed changes
 
     @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
-<<<<<<< Updated upstream
-=======
     }
 
     @BeforeMethod
@@ -97,7 +86,6 @@ public class BaseTest {
     public String successAlertMessage() {
         WebElement successAlertMessage = driver.findElement(By.xpath("//div[@class='Success show']"));
         return successAlertMessage.getText();
->>>>>>> Stashed changes
 
     }
 }
