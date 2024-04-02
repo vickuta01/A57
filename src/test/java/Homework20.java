@@ -8,7 +8,7 @@ public class Homework20 extends BaseTest {
 
 
     @Test
-    public void deletePlaylist() throws InterruptedException{
+    public void deletePlaylist() {
 
         String playlistDeletedNotification = "Deleted playlist \"Sanjeelas Playlist1.\"";
 
@@ -18,10 +18,7 @@ public class Homework20 extends BaseTest {
         clickSubmit();
         clickPlaylist();
 
-
         clickDeleteThisPlaylist();
-
-
         Assert.assertEquals(getDeletePlaylistNotification(), playlistDeletedNotification);
 
 
@@ -33,12 +30,9 @@ public class Homework20 extends BaseTest {
 
     }
 
-    public void clickDeleteThisPlaylist() throws InterruptedException{
+    public void clickDeleteThisPlaylist() {
         WebElement deleteThisPlaylist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[class='del btn-delete-playlist']")));
         deleteThisPlaylist.click();
-
-        Thread.sleep(2000);
-
         WebElement clickOk = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[class='ok']")));
         clickOk.click();
     }
