@@ -1,9 +1,11 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -19,6 +21,7 @@ public class BaseTest {
     public WebDriver driver;
     public WebDriverWait wait;
     public String url;
+    public Actions actions;
 
     //"https://qa.koel.app/";
 
@@ -41,6 +44,7 @@ public class BaseTest {
         driver = new ChromeDriver(options);
         //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+        actions = new Actions(driver);
         url = baseURL;
         navigateToPage();
         //Thread.sleep(1000);
@@ -134,6 +138,17 @@ public class BaseTest {
         playListNameElement.click();
         WebElement deletePlaylist= wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[class='del btn-delete-playlist']")));
         deletePlaylist.click();
+
+    }
+
+    public void changePlayListName(String playListName, String newPlayListName)
+    {
+        WebElement playListNameElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//section[@id='playlists']//a[text()='" + playListName + "']")));
+        actions.doubleClick(playListNameElement).perform();
+        WebElement playListNameInputField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[name='name']")));
+        playListNameInputField.sendKeys(Keys.chord(Keys.CONTROL,"A",Keys.BACK_SPACE));
+        playListNameInputField.sendKeys(newPlayListName);
+        playListNameInputField.sendKeys(Keys.ENTER);
 
     }
 
