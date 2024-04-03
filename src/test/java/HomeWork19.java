@@ -19,7 +19,7 @@ public class HomeWork19 extends BaseTest{
         clickLoginBtn();
         Thread.sleep(2000);
         //WHEN
-        clickPlayList("Testpro Playlist");
+        clickPlayList("Test");
         Thread.sleep(1000);
         deletePlayButton();
         Thread.sleep(1000);
