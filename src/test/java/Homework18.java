@@ -18,7 +18,6 @@ public class Homework18 extends BaseTest {
     }
 
     private void pressOnPlayBtn() {
-        pressOnPlayBtn();
         WebElement buttonPlayOrResume = driver.findElement(By.cssSelector("[title='Play or resume']"));
         new Actions(driver)
                 .moveToElement(buttonPlayOrResume)
