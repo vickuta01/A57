@@ -10,7 +10,7 @@ public class Homework21 extends BaseTest{
     @Test
     public void renamePlaylist(){
 
-        String expectedResult = "Updated playlist \"Success.\"";
+        String expectedResult = "Updated playlist \"Success2.\"";
 
         provideEmail("nina.vantsa@testpro.io");
         providePassword("Parasolka2006@");
@@ -28,7 +28,7 @@ public class Homework21 extends BaseTest{
     public void enterNewPlaylistName() {
         WebElement playListField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name = 'name']")));
         playListField.sendKeys(Keys.chord(Keys.COMMAND, "A", Keys.DELETE));
-        playListField.sendKeys("Success");
+        playListField.sendKeys("Success2");
         playListField.sendKeys(Keys.ENTER);
     }
 
