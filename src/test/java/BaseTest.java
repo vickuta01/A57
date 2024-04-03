@@ -29,6 +29,7 @@ public class BaseTest {
 
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        openUrl();
     }
     @AfterMethod(alwaysRun = true)
     public void tearDown(){

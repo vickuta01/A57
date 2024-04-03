@@ -14,7 +14,6 @@ public class Homework16 extends BaseTest {
         // Added ChromeOptions argument below to fix websocket error
         //setUpBrowser();
         // Steps
-        openUrl();
         WebElement registrationLink = driver.findElement(By.cssSelector("[href='registration']"));
         registrationLink.click();
 

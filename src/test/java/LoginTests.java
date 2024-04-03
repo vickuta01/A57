@@ -8,8 +8,6 @@ public class LoginTests extends BaseTest {
     public void loginEmptyEmailPassword() {
 
 //      Added ChromeOptions argument below to fix websocket error
-        setUpBrowser();
-        openUrl();
         String url = "https://qa.koel.app/";
         clickLoginBtn();
         Assert.assertEquals(driver.getCurrentUrl(), url);
@@ -21,7 +19,6 @@ public class LoginTests extends BaseTest {
         // Pre-condition
         // Added ChromeOptions argument below to fix websocket error
         // Steps
-        openUrl();
         enterEmail("demo@class.com");
         enterPassword("te$t$tudent");
         clickLoginBtn();
@@ -35,7 +32,6 @@ public class LoginTests extends BaseTest {
     public void loginInvalidEmailValidPassword() throws InterruptedException {
         // Pre-condition
         // Added ChromeOptions argument below to fix websocket error
-        openUrl();
         // Steps
         enterEmail("invalid@class.com");
         enterPassword("te$t$tudent");
@@ -53,7 +49,6 @@ public class LoginTests extends BaseTest {
         // Pre-condition
         // Added ChromeOptions argument below to fix websocket error
         // Steps
-        openUrl();
         enterEmail("demo@class.com");
         clickLoginBtn();
         Thread.sleep(2000); // Sleep or pause for 2 seconds (adjust as needed)
