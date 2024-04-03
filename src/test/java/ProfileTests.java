@@ -7,38 +7,57 @@ public class ProfileTests extends BaseTest {
 
      @Test(groups = "ProfileTests")
      public void changeProfileName() throws InterruptedException {
-          enterEmail("demo@class.com");
-          enterPassword("te$t$tudent");
-          clickLoginBtn();
+          String name = generateRandomName();
+          login("demo@class.com","te$t$tudent");
           Thread.sleep(1000);
           // open profile
-          WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
-          avatarIcon.click();
+          clickOnAvatarIcon();
           // type password
-          WebElement currentPasswordInput = driver.findElement(By.id("inputProfileCurrentPassword"));
-          currentPasswordInput.click();
-          currentPasswordInput.clear();
-          currentPasswordInput.sendKeys("te$t$tudent");
+          typeCurrentPassword();
           // type new name
-          String name = generateRandomName();
-          System.out.println(name);
-          WebElement profileName = driver.findElement(By.cssSelector("#inputProfileName"));
-          profileName.click();
-          profileName.clear();
-          profileName.sendKeys(name);
+          typeNewName(name);
           // type email
-          WebElement emailInput = driver.findElement(By.cssSelector("#inputProfileEmail"));
-          emailInput.click();
-          emailInput.clear();
-          emailInput.sendKeys("demo@class.com");
+          typeEmail();
           // click save
-          WebElement saveBtn = driver.findElement(By.cssSelector(".btn-submit"));
-          saveBtn.click();
+          clickSaveBtn();
           // assert profile name is new
           driver.navigate().refresh();
           WebElement profile = driver.findElement(By.cssSelector(".view-profile>span"));
           String newName = profile.getText();
           Assert.assertEquals(newName, name);
+     }
+
+     private void clickSaveBtn() {
+          WebElement saveBtn = driver.findElement(By.cssSelector(".btn-submit"));
+          saveBtn.click();
+     }
+
+     private void typeEmail() {
+          WebElement emailInput = driver.findElement(By.cssSelector("#inputProfileEmail"));
+          emailInput.click();
+          emailInput.clear();
+          emailInput.sendKeys("demo@class.com");
+
+     }
+
+     private void typeNewName(String name) {
+          System.out.println(name);
+          WebElement profileName = driver.findElement(By.cssSelector("#inputProfileName"));
+          profileName.click();
+          profileName.clear();
+          profileName.sendKeys(name);
+     }
+
+     private void typeCurrentPassword() {
+          WebElement currentPasswordInput = driver.findElement(By.id("inputProfileCurrentPassword"));
+          currentPasswordInput.click();
+          currentPasswordInput.clear();
+          currentPasswordInput.sendKeys("te$t$tudent");
+     }
+
+     private void clickOnAvatarIcon() {
+          WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
+          avatarIcon.click();
      }
 }
 /*import org.openqa.selenium.By;
