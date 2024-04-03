@@ -16,9 +16,9 @@ import java.time.Duration;
 
 public class BaseTest {
 
-    public WebDriver driver;
+    public WebDriver driver=null;
 
-    public WebDriverWait wait;
+    public WebDriverWait wait=null;
 
 
     @BeforeSuite
