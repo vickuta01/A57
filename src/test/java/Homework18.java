@@ -1,0 +1,28 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import java.util.List;
+public class Homework18 extends BaseTest {
+    @Test
+    public void playSong() {
+        login("demo@class.com", "te$t$tudent");
+        pressOnPlayBtn();
+        WebElement pauseBtn = driver.findElement(By.cssSelector("[data-testid='pause-btn']"));
+        Assert.assertTrue(pauseBtn.isDisplayed());
+        WebElement equalizer = driver.findElement(By.cssSelector("[alt='Sound bars']"));
+        Assert.assertTrue(equalizer.isDisplayed());
+    }
+
+    private void pressOnPlayBtn() {
+        pressOnPlayBtn();
+        WebElement buttonPlayOrResume = driver.findElement(By.cssSelector("[title='Play or resume']"));
+        new Actions(driver)
+                .moveToElement(buttonPlayOrResume)
+                .perform();
+        buttonPlayOrResume.click();
+    }
+}
