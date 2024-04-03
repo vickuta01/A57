@@ -6,6 +6,9 @@
     <test name="Homework19" preserve-order="false">
         <classes>
             <class name="HomeWork19">
+                <methods>
+                    <include name="deletePlayList"/>
+                </methods>
             </class>
         </classes>
     </test>
