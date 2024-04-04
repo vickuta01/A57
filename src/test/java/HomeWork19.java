@@ -29,7 +29,7 @@ public class HomeWork19 extends BaseTest{
 
     }
     public void clickPlayList (String playListName){
-        WebElement playListElement = driver.findElement(By.xpath("//a[@href='#!/playlist/93291']"));
+        WebElement playListElement = driver.findElement(By.xpath("//a[@href='#!/playlist/93354']"));
         playListElement.click();
 
     }
