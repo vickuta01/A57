@@ -19,7 +19,7 @@ public class HomeWork20 extends BaseTest {
     }
 
     public String getDeletedPlaylistSuccessMsg() {
-        WebElement notification = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class=\"success show\"]")));
+        WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"success show\"]")));
         return notification.getText();
 
     }
