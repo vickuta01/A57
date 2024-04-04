@@ -11,6 +11,7 @@ import com.github.javafaker.Faker;
 import java.util.Locale;
 
 import java.time.Duration;
+import org.testng.annotations.Parameters;
 
 public class BaseTest {
     static WebDriver driver;
@@ -20,7 +21,21 @@ public class BaseTest {
     static void setupDriver() {
         WebDriverManager.chromedriver().setup();
     }
+
     @BeforeMethod
+    @Parameters({"BaseURL"})
+
+    public void setUpBrowser(String BaseURL) {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--disable-notifications");
+
+        driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        String url=BaseURL;
+        openUrl(url);
+    }
+   /* @BeforeMethod
     public void setUpBrowser(){
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
@@ -30,16 +45,19 @@ public class BaseTest {
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         openUrl();
-    }
+    }*/
     @AfterMethod(alwaysRun = true)
     public void tearDown(){
         driver.quit();
     }
-
-    public void openUrl() {
-        String url = "https://qa.koel.app/";
+    public void openUrl(String url) {
         driver.get(url);
     }
+
+   /* public void openUrl() {
+        String url = "https://qa.koel.app/";
+        driver.get(url);
+    }*/
 
     void clickLoginBtn(){
         WebElement submitLoginBtn = driver.findElement(By.cssSelector("button[type='submit']"));

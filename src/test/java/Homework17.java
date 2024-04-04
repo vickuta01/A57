@@ -10,7 +10,7 @@ import java.util.List;
 public class Homework17 extends BaseTest {
 
     @Test
-    public void addSongToPlaylist() {
+    public void addSongToPlaylist() throws InterruptedException {
         String text = "Dark Days";
         String playlistName = generateRandomPlaylistName();
         // login
@@ -21,16 +21,25 @@ public class Homework17 extends BaseTest {
         clickViewAllBtn();
         // click first song
         firstSongInResults();
+        Thread.sleep(2000);
         // click Add To
         clickAddToBtn();
+        Thread.sleep(2000);
         // create new playlist
         createNewPlaylist(playlistName);
         // assertions - success banner and song name in playlist
-        WebElement successBanner = driver.findElement(By.cssSelector(".success"));
-        Assert.assertTrue(successBanner.isDisplayed());
+        Assert.assertTrue(isBannerDisplayed());
+        Assert.assertEquals(text, getSongName());
+
+    }
+    public String getSongName() {
         WebElement songName = driver.findElement(By.cssSelector("#playlistWrapper .song-item .title"));
         String songText = songName.getText();
-        Assert.assertEquals(text, songText);
+        return songText;
+    }
+    public boolean isBannerDisplayed(){
+        WebElement successBanner = driver.findElement(By.cssSelector(".success"));
+        return successBanner.isDisplayed();
 
     }
 
