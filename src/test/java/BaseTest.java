@@ -53,9 +53,9 @@ public class BaseTest {
     public void tearDown(){
         driver.quit();
     }
-    public void openUrl(String url) {
-        driver.get(url);
-    }
+   // public void openUrl(String url) {
+   //     driver.get(url);
+   // }
 
    public void openUrl() {
         String url = "https://qa.koel.app/";
