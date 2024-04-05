@@ -9,6 +9,7 @@ public class HomeWork21 extends BaseTest{
     @Test
     public void renamePlayList()throws InterruptedException{
         String expectedResult = "Updated playlist \"Test111.\"";
+
         //GIVEN
         navigateToPage();
         provideEmail("elzat.nurmanbetova@testpro.io");
@@ -27,7 +28,7 @@ public class HomeWork21 extends BaseTest{
     }
 
     public void doubleClickPlayList() {
-       WebElement playListName= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[@class='playlist playlist']")));
+       WebElement playListName= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[@class='playlist playlist']//a[contains(text(), 'Test')]")));
         actions.doubleClick(playListName).perform();
 
     }
