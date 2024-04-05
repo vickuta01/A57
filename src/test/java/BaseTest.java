@@ -16,11 +16,13 @@ import java.time.Duration;
 
 public class BaseTest {
 
-    public WebDriver driver;
+    public static WebDriver driver = null;
 
-    public WebDriverWait wait;
+    public static String url = null;
 
-    public Actions actions;
+    public static WebDriverWait wait = null;
+
+    public static Actions actions = null;
 
 
     @BeforeSuite
