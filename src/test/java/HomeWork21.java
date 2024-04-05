@@ -7,22 +7,22 @@ import org.testng.annotations.Test;
 
 public class HomeWork21 extends BaseTest{
     @Test
-    public void renamePlayList()throws InterruptedException{
         String expectedResult = "Updated playlist \"Test111.\"";
 
         //GIVEN
         navigateToPage();
         provideEmail("elzat.nurmanbetova@testpro.io");
-        Thread.sleep(2000);
+
         providePassword("kochkor123-Q!");
-        Thread.sleep(2000);
+
         clickLoginBtn();
-        Thread.sleep(2000);
+
         //WHEN
+
         doubleClickPlayList();
-        Thread.sleep(2000);
         replaceName();
-        Thread.sleep(2000);
+        newPlayListName();
+
         //THEN
         Assert.assertEquals(newPlayListName(), expectedResult);
     }
