@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 
 public class HomeWork21 extends BaseTest{
     @Test
+    public void renamePlayList(){
         String expectedResult = "Updated playlist \"Test111.\"";
 
         //GIVEN
@@ -28,7 +29,7 @@ public class HomeWork21 extends BaseTest{
     }
 
     public void doubleClickPlayList() {
-       WebElement playListName= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[@class='playlist playlist']//a[contains(text(), 'Test')]")));
+       WebElement playListName= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@href='#!/playlist/93357']")));
         actions.doubleClick(playListName).perform();
 
     }
