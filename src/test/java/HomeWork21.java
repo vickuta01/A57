@@ -29,7 +29,7 @@ public class HomeWork21 extends BaseTest{
     }
 
     public void doubleClickPlayList() {
-       WebElement playListName= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@href='#!/playlist/93357']")));
+       WebElement playListName= wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[href='#!/playlist/93357']")));
         actions.doubleClick(playListName).perform();
 
     }
