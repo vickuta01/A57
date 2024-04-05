@@ -28,13 +28,13 @@ public class HomeWork21 extends BaseTest{
     }
 
     public void doubleClickPlayList() {
-       WebElement playListName= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[@class='playlist playlist']")));
+       WebElement playListName= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[@class='playlist playlist']//a[contains(text(), 'Test')]")));
         actions.doubleClick(playListName).perform();
 
     }
     public void replaceName(){
         WebElement playListField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name = 'name']")));
-        playListField.clear();
+        playListField.sendKeys(Keys.chord(Keys.CONTROL,"A",Keys.BACK_SPACE));
         playListField.sendKeys("Test111");
         playListField.sendKeys(Keys.ENTER);
     }
