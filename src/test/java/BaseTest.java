@@ -29,8 +29,6 @@ public class BaseTest{
     public void launchBrowser() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
-        Actions actions = new Actions(driver);
-        actions = new Actions(driver);
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
