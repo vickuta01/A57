@@ -11,9 +11,7 @@ public class Homework22 extends BaseTest{
 
         LoginPage loginPage = new LoginPage(driver);
 
-        loginPage.provideEmail("sanjeela.chitrakar@testpro.io");
-        loginPage.providePassword("te$t$tudent1");
-        loginPage.clickSubmitBth();
+        loginPage.login("sanjeela.chitrakar@testpro.io" , "te$t$tudent1");
 
         HomePage homePage = new HomePage(driver);
 

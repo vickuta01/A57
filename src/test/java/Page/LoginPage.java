@@ -28,5 +28,12 @@ public class LoginPage extends BasePage{
         findElement(By.cssSelector("button[type='submit']")).click();
     }
 
+    public void login(String email,String password){
+        provideEmail(email);
+        providePassword(password);
+        clickSubmitBth();
+
+    }
+
 
 }
