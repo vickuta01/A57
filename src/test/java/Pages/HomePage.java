@@ -11,10 +11,10 @@ public class HomePage extends BasePage{
 
     //WebElements
 
-    By avatarIcon = By.cssSelector("img[class='avatar']");
-    By notificationMessage = By.cssSelector("div.success.show");
-    By firstPlaylist = By.cssSelector(".playlist:nth-child(3)");
-    By deleteBtn = By.cssSelector("button.del.btn-delete-playlist");
+    private By avatarIcon = By.cssSelector("img[class='avatar']");
+    private By notificationMessage = By.cssSelector("div.success.show");
+    private By firstPlaylist = By.cssSelector(".playlist:nth-child(3)");
+    private By deleteBtn = By.cssSelector("button.del.btn-delete-playlist");
     public WebElement getUserAvatarIcon(){
         return findElement(avatarIcon);
     }

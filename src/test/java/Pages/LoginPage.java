@@ -11,9 +11,9 @@ public class LoginPage extends BasePage{
 
     //WebElements
 
-    By emailField = By.cssSelector("[type='email']");
-    By passwordField = By.cssSelector("[type='password']");
-    By loginBtn = By.cssSelector("button[type='submit']");
+    private By emailField = By.cssSelector("[type='email']");
+    private By passwordField = By.cssSelector("[type='password']");
+    private By loginBtn = By.cssSelector("button[type='submit']");
 
     //Helper method
 
