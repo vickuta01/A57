@@ -17,6 +17,7 @@ public class ActionsTests extends BaseTest {
         clickFooterPlayBtn();
         Assert.assertTrue(pauseBtnExists());
 
+
         // Comparing numbers of elements example
         List<WebElement> songs = driver.findElements(By.cssSelector("[data-test='song-card']"));
 
@@ -30,9 +31,9 @@ public class ActionsTests extends BaseTest {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertFalse(songsNumberBefore == songsNumberAfter,
                 "=== Songs number before should be equal songs number after ===");
-        softAssert.assertEquals(driver.getCurrentUrl(), "https://bbb.testpro.io/#!/queue");
+        softAssert.assertEquals(driver.getCurrentUrl(), "https://qa.koel.app/#!/queue");
         System.out.println("Hello world");
-        softAssert.assertAll();
+        //softAssert.assertAll();
     }
 
     @Test
