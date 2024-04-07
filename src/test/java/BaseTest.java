@@ -13,28 +13,28 @@ import org.testng.annotations.AfterMethod;
 import java.time.Duration;
 
 public class BaseTest{
-    public WebDriver driver=null;
-    public WebDriverWait wait=null;
+    public WebDriver driver;
+    public WebDriverWait wait;
     public String url = "https://qa.koel.app/";
-    public Actions actions=null;
-
-
-
+    public Actions actions;
     @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
+
+
+
 
     }
 
     @BeforeMethod
     public void launchBrowser() {
-        actions = new Actions(driver);
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        actions = new Actions(driver);
         navigateToPage();
     }
 
