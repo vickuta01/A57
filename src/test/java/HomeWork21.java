@@ -29,12 +29,12 @@ public class HomeWork21 extends BaseTest{
     }
 
     public void doubleClickPlayList() {
-       WebElement playListName= wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[href='#!/playlist/93357']")));
+       WebElement playListName= wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("href='#!/playlist/93357")));
         actions.doubleClick(playListName).perform();
 
     }
     public void replaceName(){
-        WebElement playListField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name = 'name']")));
+        WebElement playListField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[name='name']")));
         playListField.sendKeys(Keys.chord(Keys.CONTROL,"A",Keys.BACK_SPACE));
         playListField.sendKeys("Test111");
         playListField.sendKeys(Keys.ENTER);
