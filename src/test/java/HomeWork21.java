@@ -10,6 +10,7 @@ public class HomeWork21 extends BaseTest{
     public void renamePlayList(){
         String expectedResult = "Updated playlist \"Test111.\"";
 
+
         //GIVEN
         navigateToPage();
         provideEmail("elzat.nurmanbetova@testpro.io");
@@ -29,8 +30,9 @@ public class HomeWork21 extends BaseTest{
     }
 
     public void doubleClickPlayList() {
-       WebElement playListName= wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("href='#!/playlist/93357")));
+       WebElement playListName = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".playlist:nth-child(2)")));
         actions.doubleClick(playListName).perform();
+
 
     }
     public void replaceName(){
