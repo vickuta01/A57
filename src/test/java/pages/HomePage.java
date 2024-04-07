@@ -1,10 +1,9 @@
-package Page;
+package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class HomePage extends BasePage {
 
@@ -12,21 +11,25 @@ public class HomePage extends BasePage {
         super(givenDriver);
     }
 
+    private By doubleClickPlaylistLocator = By.cssSelector("li.playlist:nth-child(3)");
+    private By enterNewPlaylistNameLocator = By.cssSelector("[name='name']");
+    private By getRenamePlaylistSuccessMsgLocator = By.cssSelector("div.success.show");
+
     public void doubleClickPlaylist(){
-        WebElement clickPlaylist = findElement(By.cssSelector("li.playlist:nth-child(3)"));
+        WebElement clickPlaylist = findElement(doubleClickPlaylistLocator);
         actions.doubleClick(clickPlaylist).perform();
 
     }
 
     public void enterNewPlaylistName(String newPlaylistName){
-        WebElement playlistName = findElement(By.cssSelector("[name='name']"));
+        WebElement playlistName = findElement(enterNewPlaylistNameLocator);
         playlistName.sendKeys(Keys.chord(Keys.CONTROL,"A",Keys.BACK_SPACE));
         playlistName.sendKeys(newPlaylistName);
         playlistName.sendKeys(Keys.ENTER);
     }
 
     public String getRenamePlaylistSuccessMsg(){
-        WebElement notification = findElement(By.cssSelector("div.success.show"));
+        WebElement notification = findElement(getRenamePlaylistSuccessMsgLocator);
         return notification.getText();
     }
 
