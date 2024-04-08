@@ -114,16 +114,44 @@ public class ActionsTests extends BaseTest {
         String name = playlistElement.getText();
         return name;
     }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @Test
     public void countSongsInPlaylist() {
 
-        login("demo@class.com", "te$t$tudent");
-        WebElement playlist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(4)")));
+        login("grigore.crepciuc@testpro.io", "te$t$tudent");
+        WebElement playlist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(3)")));
         playlist.click();
         List<WebElement> songs = driver.findElements(By.cssSelector("#playlistWrapper .song-item"));
         int number = songs.size();
-        Assert.assertEquals(number, 1); // can fail, depends on current number. This is just an example
+        Assert.assertEquals(number, 3); // can fail, depends on current number. This is just an example
 
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////
+    @Test
+    public void countSongsInsidePlaylist(){
+        login("grigore.crepciuc@testpro.io", "te$t$tudent");
+        choosePlaylistByName("sap");
+        displayAllSongs();
+        Assert.assertTrue(getPlaylistDetails().contains(String.valueOf(countSongs())));
+    }
+    public void choosePlaylistByName(String playlistName){
+        wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.cssSelector("[href='#!/playlist/93377']")))
+                .click();
+    }
+    public void displayAllSongs(){
+        List<WebElement>songList = driver.findElements(By.cssSelector("section#playlistWrapper td.title"));
+        //count and display songs names
+        System.out.println("Number of songs in the playlist:"+ countSongs());
+        for(WebElement e : songList){
+            System.out.println(e.getText());
+        }
+    }
+    public int countSongs(){
+        return driver.findElements(By.cssSelector("section#playlistWrapper td.title")).size();
+    }
+    public String getPlaylistDetails(){
+        return driver.findElement(By.cssSelector("span.meta.text-secondary span.meta")).getText();
     }
 }

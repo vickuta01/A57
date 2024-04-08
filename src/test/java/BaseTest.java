@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -12,31 +13,19 @@ import com.github.javafaker.Faker;
 import java.util.Locale;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
+
 import org.testng.annotations.Parameters;
 
 public class BaseTest {
     static WebDriver driver;
     WebDriverWait wait;
-
+    static Actions actions;
 
     @BeforeSuite
     static void setupDriver() {
         WebDriverManager.chromedriver().setup();
     }
 
-   /* @BeforeMethod
-    @Parameters({"BaseURL"})
-
-    public void setUpBrowser(String BaseURL) {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        options.addArguments("--disable-notifications");
-
-        driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        String url=BaseURL;
-        openUrl(url);
-    }*/
     @BeforeMethod
     public void setUpBrowser(){
         ChromeOptions options = new ChromeOptions();
@@ -47,15 +36,13 @@ public class BaseTest {
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        actions = new Actions(driver);
         openUrl();
     }
     @AfterMethod(alwaysRun = true)
     public void tearDown(){
         driver.quit();
     }
-   // public void openUrl(String url) {
-   //     driver.get(url);
-   // }
 
    public void openUrl() {
         String url = "https://qa.koel.app/";
@@ -115,4 +102,20 @@ public class BaseTest {
     public WebElement waitUntilClickable(By element){
         return new WebDriverWait(driver, Duration.ofSeconds(4)).until(ExpectedConditions.elementToBeClickable(element));
     }
+    /* @BeforeMethod
+    @Parameters({"BaseURL"})
+
+    public void setUpBrowser(String BaseURL) {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--disable-notifications");
+
+        driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        String url=BaseURL;
+        openUrl(url);
+    }*/
+    // public void openUrl(String url) {
+    //     driver.get(url);
+    // }
 }

@@ -40,6 +40,7 @@ public class CSVDataProviderTest extends BaseTest {
         searchForSong(song);
         WebElement header = driver.findElement(By.cssSelector("strong"));
         String searchHeader = header.getText();
+        System.out.println(searchHeader);
         Assert.assertEquals(song, searchHeader);
     }
 }
