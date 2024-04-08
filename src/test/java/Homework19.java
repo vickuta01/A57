@@ -8,8 +8,8 @@ public class Homework19 extends BaseTest {
     public void deletePlaylist() throws InterruptedException{
         String expectedDeletedPlaylistMsg = "Deleted playlist \"Test Pro Playlist.\"";
 
-    provideEmail("demo@class.com");
-    providePassword("te$t$tudent");
+    provideEmail("aleksandr.parkizin@testpro.io");
+    providePassword("Z0ffApQ6");
     clickBtn();
     Thread.sleep(2000);
 

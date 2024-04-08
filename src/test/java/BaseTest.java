@@ -35,12 +35,12 @@ public class BaseTest {
     public void providePassword(String password){
         WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
         passwordField.clear();
-        passwordField.sendKeys("Z0ffApQ6");
+        passwordField.sendKeys(password);
     }
     public void provideEmail(String email){
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
         emailField.clear();
-        emailField.sendKeys("aleksandr.parkizin@testpro.io");
+        emailField.sendKeys(email);
     }
     public void clickBtn(){
         WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
