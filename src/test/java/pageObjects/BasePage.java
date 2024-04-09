@@ -30,7 +30,10 @@ public class BasePage {
     public void doubleClick(By locator){
         actions.doubleClick(findElement(locator)).perform();
     }
-    
+
+    public void click(By locator){
+        findElement(locator).click();
+    }
 
 
 }
