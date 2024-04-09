@@ -72,4 +72,14 @@ public class LoginTests extends BaseTest {
 
         Assert.assertEquals(driver.getCurrentUrl(),url);
     }
+
+    @Test
+
+    public void succesfullLoginPF(){
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+
+        loginPage.enterEmail("agnes.albertusiak@testpro.io").enterPassword("4Ameryka4aska!").clickSubmitBnt();
+        Assert.assertTrue(homePage.getUserAvatarIcon().isDisplayed());
+    }
 }
