@@ -8,28 +8,13 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class Homework18Test {
+public class Homework18Test extends BaseTest  {
 
     @Test
     public void playSong() throws InterruptedException {
 
-        ///Pre-Condition
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-
-        //ChromeDriver
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        //STEPS
-        //STEP 1: OpenBrowser
-        String url = "https://qa.koel.app/";
-        driver.get(url);
-        Thread.sleep(2000);
-
-
         //STEP 2: Login using valid credentials
-        WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
+        WebElement emailField = driver.findElement(By.cssSelector("input[placeholder='Email Address']"));
         emailField.clear();
         emailField.sendKeys("elliott.nance@testpro.io");
         Thread.sleep(2000);
@@ -58,8 +43,5 @@ public class Homework18Test {
         WebElement songPlaying = driver.findElement(By.cssSelector("div[data-test='soundbars']"));
         Thread.sleep(2000);
 
-       //STEP 6: Close Browser
-        driver.quit();
-
-    }
+          }
 }
