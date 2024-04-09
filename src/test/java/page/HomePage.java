@@ -1,4 +1,4 @@
-package Page;
+package page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -12,6 +12,25 @@ public class HomePage extends BasePage {
         super(givenDriver);
     }
 
+
+    //Locator
+
+    //Helper
+    public WebElement getUserAvatar(){
+        return findElement(By.cssSelector("img.avatar"));
+    }
+
+    public WebElement hoverPlay(){
+        WebElement play = driver.findElement(By.cssSelector("[data-testid='play-btn']"));
+        actions.moveToElement(play).perform();
+        return wait.until(ExpectedConditions.visibilityOf(play));
+    }
+
+
+
+
+
+   //**************************************************************************************************************
     public void doubleClickPlaylist(){
         WebElement clickPlaylist = findElement(By.cssSelector("li.playlist:nth-child(3)"));
         actions.doubleClick(clickPlaylist).perform();

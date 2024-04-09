@@ -1,5 +1,5 @@
-import Page.HomePage;
-import Page.LoginPage;
+import page.HomePage;
+import page.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -10,7 +10,6 @@ public class Homework22 extends BaseTest{
         String updatedPlaylistMsg ="Updated playlist \"Sanjeela Edited Playlist.\"";
 
         LoginPage loginPage = new LoginPage(driver);
-
         loginPage.login("sanjeela.chitrakar@testpro.io" , "te$t$tudent1");
 
         HomePage homePage = new HomePage(driver);
