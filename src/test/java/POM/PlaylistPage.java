@@ -8,6 +8,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class PlaylistPage extends BasePage{
@@ -23,6 +25,7 @@ public class PlaylistPage extends BasePage{
     By checkHeader = By.cssSelector("#playlistWrapper h1");
     By delPlaylistBtn = By.cssSelector(".btn-delete-playlist");
     By toVerifyBanner = By.cssSelector(".success");
+    private  By playlistLinks = By.cssSelector("#playlists a");
     public void createNewPlaylist(String playlistName) {
         WebElement newPlaylistNameInput = driver.findElement(plNameInput);
         newPlaylistNameInput.click();
@@ -66,5 +69,16 @@ public class PlaylistPage extends BasePage{
     }
     public void verifyBanner() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(toVerifyBanner));
+    }
+    public List<String> getAllPlaylistNames() {
+        List<WebElement> playlistElements = wait.until(ExpectedConditions.visibilityOfElementLocated(playlistLinks));
+        // get playlist names from playlist elements
+        List<String> playlistNames = new ArrayList<>();
+
+        for (WebElement playlistElement : playlistElements){
+            playlistNames.add(playlistElement.getText());
+        }
+        return playlistNames;
+        System.out.println(playlistNames);
     }
 }

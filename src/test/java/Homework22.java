@@ -14,7 +14,7 @@ import java.util.List;
 public class Homework22 extends BaseTest {
 
     @Test
-    public void deletePlaylist() throws InterruptedException {
+    public void deletePlaylist() {
         LoginPage loginPage = new LoginPage(driver);
         PlaylistPage playlistPage = new PlaylistPage(driver);
         String playlist = playlistPage.generateRandomPlaylistName();
@@ -33,15 +33,7 @@ public class Homework22 extends BaseTest {
         // refresh page
         driver.navigate().refresh();
         // get all playlist elements
-        List<WebElement> playlists = driver.findElements(By.cssSelector("#playlists a"));
-        // get playlist names from playlist elements
-        List<String> playlistNames = new ArrayList<>();
-
-        for (int i = 0; i < playlists.size(); i++) {
-            String playlistName = playlists.get(i).getText();
-            playlistNames.add(playlistName);
-        }
-        System.out.println(playlistNames);
+        List<String>playlistNames = playlistPage.getAllPlaylistNames();
         // assert playlist was deleted
         Assert.assertFalse(playlistNames.contains(playlist));
     }
