@@ -1,3 +1,4 @@
+import POM.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -11,10 +12,11 @@ public class Homework21 extends BaseTest {
 
     @Test
     public void renamePlaylist() {
+        LoginPage loginPage = new LoginPage(driver);
         // double click
         String playlistName = "Sun And Wind";
 
-        login("grigore.crepciuc@testpro.io", "te$t$tudent");
+        loginPage.login("grigore.crepciuc@testpro.io", "te$t$tudent");
         doubleClickChoosePlaylist();
         enterPlaylistName(playlistName);
         String newName = getPlaylistName();

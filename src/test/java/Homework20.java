@@ -1,3 +1,5 @@
+import POM.LoginPage;
+import POM.PlaylistPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -13,21 +15,21 @@ public class Homework20 extends BaseTest {
 
     @Test
     public void deletePlaylist() throws InterruptedException {
-        String playlist = generateRandomPlaylistName();
-        login("grigore.crepciuc@testpro.io", "te$t$tudent");
+        LoginPage loginPage = new LoginPage(driver);
+        PlaylistPage playlistPage = new PlaylistPage(driver);
+        String playlist = playlistPage.generateRandomPlaylistName();
+        loginPage.login("grigore.crepciuc@testpro.io", "te$t$tudent");
         // CREATE PLAYLIST
         // click Plus btn
-        clickOnPlusBtn();
         // click Create new playlist
-        clickNewPlaylistBtn();
         // Add playlist name
-        sentNewPlaylistName(playlist);
+        playlistPage.createNewPlaylistUsingPlusBtn(playlist);
         // check playlist name in header
-        checkPlayListHeader(playlist);
+        playlistPage.checkPlayListHeader(playlist);
         // delete playlist
-        clickDeletePlaylistBtn();
+        playlistPage.clickDeletePlaylistBtn();
         // verify banner
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".success")));
+        playlistPage.verifyBanner();
         // refresh page
         driver.navigate().refresh();
         // get all playlist elements
@@ -44,35 +46,4 @@ public class Homework20 extends BaseTest {
         Assert.assertFalse(playlistNames.contains(playlist));
     }
 
-    private void clickDeletePlaylistBtn() {
-        WebElement deletePlaylistBtn = waitUntilClickable(By.cssSelector(".btn-delete-playlist"));
-        deletePlaylistBtn.click();
-    }
-
-    private void checkPlayListHeader(String playlist) {
-        WebElement playlistHeader = waitUntilVisible(By.cssSelector("#playlistWrapper h1"));
-        wait.until(ExpectedConditions
-                .textToBePresentInElement(playlistHeader, playlist));
-    }
-
-    private void sentNewPlaylistName(String playlist) {
-        WebElement inputPlaylistName = waitUntilClickable(By.cssSelector(".create input"));
-        inputPlaylistName.click();
-        inputPlaylistName.clear();
-        inputPlaylistName.sendKeys(playlist);
-        // click Enter
-        new Actions(driver)
-                .keyDown(Keys.ENTER)
-                .perform();
-    }
-
-    private void clickNewPlaylistBtn() {
-        WebElement presNewPlaylistBtn = waitUntilVisible(By.cssSelector("[data-testid='playlist-context-menu-create-simple']"));
-        presNewPlaylistBtn.click();
-    }
-
-    private void clickOnPlusBtn() {
-        WebElement plusBtn = waitUntilVisible(By.cssSelector("[data-testid='sidebar-create-playlist-btn']"));
-        plusBtn.click();
-    }
 }
