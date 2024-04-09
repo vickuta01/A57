@@ -1,3 +1,5 @@
+import POM.LoginPage;
+import POM.PlaylistPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -11,10 +13,12 @@ public class Homework17 extends BaseTest {
 
     @Test
     public void addSongToPlaylist() throws InterruptedException {
+        LoginPage loginPage = new LoginPage(driver);
+        PlaylistPage playlistPage = new PlaylistPage(driver);
         String text = "Dark Days";
-        String playlistName = generateRandomPlaylistName();
+        String playlistName = playlistPage.generateRandomPlaylistName();
         // login
-        login("demo@class.com", "te$t$tudent");
+        loginPage.login("demo@class.com", "te$t$tudent");
         // search for song
         findInput(text);
         // click results view all button
@@ -26,7 +30,7 @@ public class Homework17 extends BaseTest {
         clickAddToBtn();
         Thread.sleep(2000);
         // create new playlist
-        createNewPlaylist(playlistName);
+        playlistPage.createNewPlaylist(playlistName);
         // assertions - success banner and song name in playlist
         Assert.assertTrue(isBannerDisplayed());
         Assert.assertEquals(text, getSongName());
@@ -43,17 +47,7 @@ public class Homework17 extends BaseTest {
 
     }
 
-    private void createNewPlaylist(String playlistName) {
-        WebElement newPlaylistNameInput = driver.findElement(By.cssSelector("[id='songResultsWrapper'] [placeholder='Playlist name']"));
-        newPlaylistNameInput.click();
-        newPlaylistNameInput.clear();
-        newPlaylistNameInput.sendKeys(playlistName);
-        // click Enter
-        new Actions(driver)
-                .keyDown(Keys.ENTER)
-                .perform();
-        System.out.println(playlistName);
-    }
+
 
     private void clickAddToBtn() {
         WebElement addToBtn = driver.findElement(By.cssSelector("[data-test='add-to-btn']"));

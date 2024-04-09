@@ -1,3 +1,4 @@
+import POM.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -9,7 +10,8 @@ public class Homework19 extends BaseTest{
     @Test
     public void deletePlaylist() {
 //      Added ChromeOptions argument below to fix websocket error
-        login("grigore.crepciuc@testpro.io", "te$t$tudent");
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login("grigore.crepciuc@testpro.io", "te$t$tudent");
         clickPlaylist();
         deleteSelectedPlaylist();
         waitCommand();
@@ -28,6 +30,7 @@ public class Homework19 extends BaseTest{
         js.executeScript("arguments[0].click();", deletePlaylistBtn);
     }
     public void waitCommand() {
+
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
     public void clickOkBtn() {

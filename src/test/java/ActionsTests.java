@@ -1,3 +1,4 @@
+import POM.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -13,7 +14,8 @@ public class ActionsTests extends BaseTest {
     @Test
     public void playSongTest() {
         // hover over in clickPlayBtn
-        login("demo@class.com", "te$t$tudent");
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login("demo@class.com", "te$t$tudent");
         clickFooterPlayBtn();
         Assert.assertTrue(pauseBtnExists());
 
@@ -39,9 +41,10 @@ public class ActionsTests extends BaseTest {
     @Test
     public void renamePlaylist() {
         // double click
+        LoginPage loginPage = new LoginPage(driver);
         String playlistName = "Sun And Wind";
 
-        login("grigore.crepciuc@testpro.io", "te$t$tudent");
+        loginPage.login("grigore.crepciuc@testpro.io", "te$t$tudent");
         doubleClickChoosePlaylist();
         enterPlaylistName(playlistName);
         String newName = getPlaylistName();
@@ -50,7 +53,8 @@ public class ActionsTests extends BaseTest {
 
     @Test
     public void playSongFromListTest() {
-        login("demo@class.com", "te$t$tudent");
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login("demo@class.com", "te$t$tudent");
         goToAllSongs();
         // right click on first song
         rightClickOnFirstSong();
@@ -119,7 +123,8 @@ public class ActionsTests extends BaseTest {
     @Test
     public void countSongsInPlaylist() {
 
-        login("grigore.crepciuc@testpro.io", "te$t$tudent");
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login("grigore.crepciuc@testpro.io", "te$t$tudent");
         WebElement playlist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(3)")));
         playlist.click();
         List<WebElement> songs = driver.findElements(By.cssSelector("#playlistWrapper .song-item"));
@@ -130,7 +135,8 @@ public class ActionsTests extends BaseTest {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Test
     public void countSongsInsidePlaylist(){
-        login("grigore.crepciuc@testpro.io", "te$t$tudent");
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login("grigore.crepciuc@testpro.io", "te$t$tudent");
         choosePlaylistByName("sap");
         displayAllSongs();
         Assert.assertTrue(getPlaylistDetails().contains(String.valueOf(countSongs())));

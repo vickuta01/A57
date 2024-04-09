@@ -1,3 +1,4 @@
+import POM.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -7,8 +8,9 @@ public class ProfileTests extends BaseTest {
 
      @Test(groups = "ProfileTests")
      public void changeProfileName() throws InterruptedException {
+          LoginPage loginPage = new LoginPage(driver);
           String name = generateRandomName();
-          login("demo@class.com","te$t$tudent");
+          loginPage.login("demo@class.com","te$t$tudent");
           Thread.sleep(1000);
           // open profile
           clickOnAvatarIcon();
