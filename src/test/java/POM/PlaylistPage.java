@@ -15,6 +15,7 @@ public class PlaylistPage extends BasePage{
 
         super(givenDriver);
     }
+    //LOCATORS
     By plusBtn = By.cssSelector("[data-testid='sidebar-create-playlist-btn']");
     By createNewPlaylist = By.cssSelector("[data-testid='playlist-context-menu-create-simple']");
     By playlistNameInput = By.cssSelector(".create input");
