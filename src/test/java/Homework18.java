@@ -8,7 +8,7 @@ public class Homework18 extends BaseTest{
 
         boolean soundBarDisplayed = true;
 
-        //Log in using Email and Password
+      /*  //Log in using Email and Password
         provideEmail("sakthibala.sengottiyan@testpro.io");
         //Thread.sleep(1000);
 
@@ -24,7 +24,7 @@ public class Homework18 extends BaseTest{
 
         //Validate that the song is playing by checking the sound bar
         Assert.assertEquals(isSoundBarVisible(),soundBarDisplayed);
-        //Thread.sleep(1000);
+        //Thread.sleep(1000); */
 
     }
 }

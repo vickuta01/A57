@@ -1,4 +1,4 @@
-package POM;
+package pageobjectmodel;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,11 +10,11 @@ public class LoginPage extends BasePage {
         super(givenDriver);
     }
 
-    By emailField = By.cssSelector("input[type='email']");
+    private By emailField = By.cssSelector("input[type='email']");
 
-    By passwordField = By.cssSelector("input[type='password']");
+    private By passwordField = By.cssSelector("input[type='password']");
 
-    By logInBtn = By.cssSelector("button[type='submit']");
+    private By logInBtn = By.cssSelector("button[type='submit']");
 
     public void provideEmail(String email)
     {

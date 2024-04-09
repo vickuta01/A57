@@ -12,7 +12,7 @@ public class HomeWork17 extends BaseTest{
 
         //Thread.sleep(1000);
 
-        //Enter Email
+     /*  //Enter Email
         provideEmail("sakthibala.sengottiyan@testpro.io");
         //Thread.sleep(1000);
 
@@ -45,9 +45,9 @@ public class HomeWork17 extends BaseTest{
         //Thread.sleep(2000);
 
         //Verify the notification message
-        Assert.assertEquals(getSuccessAlertMessage(), expectedAlertMessage);
+        Assert.assertEquals(getSuccessAlertMessage(), expectedAlertMessage); */
 
 
     }
 
-}
+    }

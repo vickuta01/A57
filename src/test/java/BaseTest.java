@@ -60,7 +60,7 @@ public class BaseTest {
         driver.quit();
     }
 
-    public void provideEmail(String email) {
+   /* public void provideEmail(String email) {
         WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='email']")));
         emailField.clear();
         emailField.sendKeys(email);
@@ -150,7 +150,7 @@ public class BaseTest {
         playListNameInputField.sendKeys(newPlayListName);
         playListNameInputField.sendKeys(Keys.ENTER);
 
-    }
+    } */
 
 
 }

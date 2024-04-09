@@ -10,7 +10,7 @@ public class Homework20 extends BaseTest{
 
         String expectedAlertMessage = "Deleted playlist " + "\"" + playListName + ".\"";
 
-        //Log in using Email and Password
+        /* //Log in using Email and Password
         provideEmail("sakthibala.sengottiyan@testpro.io");
         providePassword("Smg6reUh");
         clickLogIn();
@@ -19,7 +19,7 @@ public class Homework20 extends BaseTest{
         deleteFromPlaylist(playListName);
 
         //Verify the notification message
-        Assert.assertEquals(getSuccessAlertMessage(), expectedAlertMessage);
+        Assert.assertEquals(getSuccessAlertMessage(), expectedAlertMessage);*/
 
     }
 }

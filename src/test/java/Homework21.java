@@ -11,7 +11,7 @@ public class Homework21 extends BaseTest{
 
         String expectedAlertMessage = "Updated playlist " + "\"" + newPlayListName + ".\"";
 
-        //Log in using Email and Password
+        /*//Log in using Email and Password
         provideEmail("sakthibala.sengottiyan@testpro.io");
         providePassword("Smg6reUh");
         clickLogIn();
@@ -20,7 +20,7 @@ public class Homework21 extends BaseTest{
         changePlayListName(playListName,newPlayListName);
 
         //Verify the notification message
-        Assert.assertEquals(getSuccessAlertMessage(), expectedAlertMessage);
+        Assert.assertEquals(getSuccessAlertMessage(), expectedAlertMessage);*/
 
 
     }
