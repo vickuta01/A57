@@ -1,11 +1,16 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pageObjects.HomePage;
+import pageObjects.LoginPage;
 
 public class LoginTests extends BaseTest {
 
+    /**
+     * This is positive login test using procedural programming
+     * @throws InterruptedException
+     */
     @Test
     public void loginValidEmailPassword() throws InterruptedException {
         //navigateToPage();
@@ -57,6 +62,36 @@ public class LoginTests extends BaseTest {
         String expectedUrl = "//https://qa.koel.app/";
         Assert.assertEquals(driver.getCurrentUrl(), expectedUrl);
         System.out.println("Just Testing console");
+    }
+
+    /**
+     * This is positive login test using Page Object Model
+     * @throws InterruptedException
+     */
+    @Test
+    public void loginValidEmailPasswordUsingPOM() throws InterruptedException {
+
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+
+        loginPage.provideEmail("demo@class.com");
+        loginPage.providePassword("te$t$tudent");
+        loginPage.clickOnSubmitBtn();
+        Thread.sleep(500);
+        Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
+    }
+
+    @Test
+    public void loginValidEmailPasswordUsingPageFactory() throws InterruptedException {
+
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+
+        loginPage.provideEmailToLogin("demo@class.com")
+                .providePasswordToLogin("te$t$tudent")
+                .clickSubmitBtn();
+
+        Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
     }
 
 }
