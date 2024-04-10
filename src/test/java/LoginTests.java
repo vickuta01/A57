@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 public class LoginTests extends BaseTest{
     @Test
-    public void loginEmptyEmailPassword() {
+    public void loginEmptyEmailPasswordTest() {
         LoginPage loginPage=new LoginPage(driver);
 
         loginPage.provideEmail("");
@@ -29,7 +29,7 @@ public class LoginTests extends BaseTest{
     }
     @Test
 
-    public void loginValidEmailPassword(){
+    public void loginValidEmailPasswordTest(){
 LoginPage loginPage = new LoginPage(driver);
 HomePage homePage = new HomePage(driver);
 
@@ -46,7 +46,7 @@ loginPage.clickSubmitBtn();
     }
 
     @Test
-    public void loginInvalidEmailPassword()  {
+    public void loginInvalidEmailPasswordTest()  {
         //pre-condition
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
