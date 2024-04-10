@@ -8,16 +8,17 @@ public class Homework22 extends BaseTest{
 
 
     @Test
-    public void playSong() {
+    public void renamePlaylist() {
+        String newPlaylistName = "New Playlist";
+        String updatePlaylistMsg = "Updated playlist \"New Playlist.\"";
 
-        LoginPage loginpage = new LoginPage(driver);
-        HomePage homepage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
 
-        loginpage.login();
-
-        homepage.playNextSong();
-
-        Assert.assertTrue(homepage.isSoundBarVisible());
+        loginPage.login();
+        homePage.doubleClickPlaylist();
+        homePage.enterNewPlaylistName(newPlaylistName);
+        Assert.assertEquals(homePage.getRenamePlaylistSuccessMsg(), updatePlaylistMsg);
 
     }
 

@@ -1,6 +1,7 @@
 package POM;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -12,25 +13,31 @@ public class HomePage extends BasePage {
         super(givenDriver);
     }
 
-    By playerControlsBtn = By.cssSelector("#mainFooter div[class='side player-controls']");
 
-    By playNextSongBtn = By.cssSelector("#mainFooter span[class='play']");
+    By userAvatarIcon = By.cssSelector("img.avatar");
 
-    By soundBar = By.cssSelector("img[alt='Sound bars']");
+    By firstPlaylist = By.cssSelector(".playlist:nth-child(3)");
 
-    By avatarIcon = By.cssSelector("img[class='avatar']");
-    public void playNextSong()
-    {
-        findElement(playerControlsBtn).click();
-        findElement(playNextSongBtn).click();
+    By playlistNameField = By.cssSelector("[name='name']");
+
+    By renamePlaylistSuccessMsg = By.cssSelector("div.success.show");
+
+    public WebElement getUserAvatar(){
+        return findElement(userAvatarIcon);
+
+    }
+    public void doubleClickPlaylist(){
+       doubleClick(firstPlaylist);
+    }
+    public void enterNewPlaylistName(String playlistName) {
+        findElement(playlistNameField).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.BACK_SPACE));
+        findElement(playlistNameField).sendKeys(playlistName);
+        findElement(playlistNameField).sendKeys(Keys.ENTER);
+
     }
 
-    public boolean isSoundBarVisible()
-    {
-        return findElement(soundBar).isDisplayed();
-    }
-    public WebElement getUserAvatarIcon(){
-        return findElement(avatarIcon);
+    public String getRenamePlaylistSuccessMsg() {
+        return findElement(renamePlaylistSuccessMsg).getText();
     }
 
 

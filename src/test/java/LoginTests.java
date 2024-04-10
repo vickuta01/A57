@@ -1,6 +1,8 @@
 import POM.HomePage;
 import POM.LoginPage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
@@ -18,7 +20,8 @@ public class LoginTests extends BaseTest {
         loginPage.provideEmail("nemanja.sijacic@testpro.io");
         loginPage.providePassword("Vojvodina.021");
         loginPage.clickSubmit();
-        Assert.assertTrue(homePage.getUserAvatarIcon().isDisplayed());
+        WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
+        Assert.assertTrue(avatarIcon.isDisplayed());
 
 
 //      Added ChromeOptions argument below to fix websocket error
