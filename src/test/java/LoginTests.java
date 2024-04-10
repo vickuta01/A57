@@ -1,3 +1,5 @@
+import POM.HomePage;
+import POM.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -5,84 +7,60 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
 public class LoginTests extends BaseTest{
     @Test
-    public void loginEmptyEmailPassword() throws InterruptedException {
-        //added chromeOptions argument bellow to fix websocket error
-        //step 2: enter email
-        WebElement emailField= driver.findElement(By.cssSelector("input[type='email']"));
-        emailField.clear();
-        emailField.sendKeys("");
-        Thread.sleep(2000);
-        //step 3: enter password
-        WebElement passwordField= driver.findElement(By.cssSelector("input[type='password']"));
-        passwordField.clear();
-        passwordField.sendKeys("te$t$tudent");
-        Thread.sleep(2000);
-        //step 4: click on login
-        WebElement loginBtn=driver.findElement(By.cssSelector("button[type='submit']"));
-        loginBtn.click();
-        Thread.sleep(2000);
-        //step 5: expected vs actual
+    public void loginEmptyEmailPassword() {
+        LoginPage loginPage=new LoginPage(driver);
+
+        loginPage.provideEmail("");
+        loginPage.providePassword("Econ@99336");
+        loginPage.clickSubmitBtn();
 
         Assert.assertEquals(driver.getCurrentUrl(),url);
         System.out.println("Just Testing Console");
-        Thread.sleep(2000);
+
         //step 6: close browser
         driver.quit();
     }
     @Test
 
-    public void loginValidEmailPassword()throws InterruptedException{
+    public void loginValidEmailPassword(){
+LoginPage loginPage = new LoginPage(driver);
+HomePage homePage = new HomePage(driver);
 
-        //step 2: enter email
-        WebElement emailField= driver.findElement(By.cssSelector("input[type='email']"));
-        emailField.clear();
-        emailField.sendKeys("demo@class.com");
-        Thread.sleep(2000);
-        //step 3: enter password
-        WebElement passwordField= driver.findElement(By.cssSelector("input[type='password']"));
-        passwordField.clear();
-        passwordField.sendKeys("te$t$tudent");
-        Thread.sleep(2000);
-        //step 4: click on login
-        WebElement loginBtn=driver.findElement(By.cssSelector("button[type='submit']"));
-        loginBtn.click();
-        Thread.sleep(2000);
-        //step 5: expected vs actual
-        WebElement avatarIcon=driver.findElement(By.cssSelector("img[class='avatar']"));
-        Assert.assertTrue(avatarIcon.isDisplayed());
-        Thread.sleep(2000);
+loginPage.provideEmail("habtom.fesseha@testpro.io");
+loginPage.providePassword("Econ@99336");
+loginPage.clickSubmitBtn();
+       //Before avatarIcon was declared at the HomePage
+      // WebElement avatarIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img.avatar")));
+        //After avatarIcon was declared at the HomePage
+        Assert.assertTrue(homePage.getUserAvatar.isDisplayed());
+
         //step 6: close browser
         driver.quit();
     }
 
     @Test
-    public void loginInvalidEmailPassword() throws InterruptedException{
+    public void loginInvalidEmailPassword()  {
         //pre-condition
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+
+        loginPage.provideEmail("invalidemail@class.com");
+        loginPage.providePassword("Econ@99336");
+        loginPage.clickSubmitBtn();
 
 
-        //step 2: enter email
-        WebElement emailField= driver.findElement(By.cssSelector("input[type='email']"));
-        emailField.clear();
-        emailField.sendKeys("incorrectemail@class.com");
-        Thread.sleep(2000);
-        //step 3: enter password
-        WebElement passwordField=driver.findElement(By.cssSelector("input[type='password']"));
-        passwordField.clear();
-        passwordField.sendKeys("te$t$tudent");
-        Thread.sleep(2000);
-        //step 4: click on login
-        WebElement loginBtn=driver.findElement(By.cssSelector("button[type='submit']"));
-        loginBtn.click();
-        Thread.sleep(2000);
+
+
         //step 5: expected vs actual
         Assert.assertEquals(driver.getCurrentUrl(),url);
-        Thread.sleep(2000);
+
         //step 6: close browser
         driver.quit();
 
