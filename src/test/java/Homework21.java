@@ -1,9 +1,12 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.HomePage;
+import pages.LoginPage;
 
 public class Homework21 extends BaseTest{
 
@@ -36,4 +39,10 @@ public class Homework21 extends BaseTest{
         WebElement playListElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[@class= 'playlist playlist']//a[contains(text(), 'My Play List')]")));
         actions.doubleClick(playListElement).perform();
     }
+
+
+
+
+
+
 }
