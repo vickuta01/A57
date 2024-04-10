@@ -18,14 +18,12 @@ public class PlaylistPage extends BasePage{
         super(givenDriver);
     }
     //LOCATORS
-    By plusBtn = By.cssSelector("[data-testid='sidebar-create-playlist-btn']");
-    By createNewPlaylist = By.cssSelector("[data-testid='playlist-context-menu-create-simple']");
-    By playlistNameInput = By.cssSelector(".create input");
-    By plNameInput = By.cssSelector("[id='songResultsWrapper'] [placeholder='Playlist name']");
-    By checkHeader = By.cssSelector("#playlistWrapper h1");
-    By delPlaylistBtn = By.cssSelector(".btn-delete-playlist");
-    By toVerifyBanner = By.cssSelector(".success");
-    private  By playlistLinks = By.cssSelector("#playlists a");
+    private By plusBtn = By.cssSelector("[data-testid='sidebar-create-playlist-btn']");
+    private By createNewPlaylist = By.cssSelector("[data-testid='playlist-context-menu-create-simple']");
+    private By playlistNameInput = By.cssSelector(".create input");
+    private By plNameInput = By.cssSelector("[id='songResultsWrapper'] [placeholder='Playlist name']");
+    private By checkHeader = By.cssSelector("#playlistWrapper h1");
+    private By delPlaylistBtn = By.cssSelector(".btn-delete-playlist");
     public void createNewPlaylist(String playlistName) {
         WebElement newPlaylistNameInput = driver.findElement(plNameInput);
         newPlaylistNameInput.click();
@@ -58,27 +56,26 @@ public class PlaylistPage extends BasePage{
                 .keyDown(Keys.ENTER)
                 .perform();
     }
-    public void checkPlayListHeader(String playlist) {
+    public void checkPlayListHeader(String playlistName) {
         WebElement playlistHeader = waitUntilVisible(checkHeader);
         wait.until(ExpectedConditions
-                .textToBePresentInElement(playlistHeader, playlist));
+                .textToBePresentInElement(playlistHeader, playlistName));
     }
     public void clickDeletePlaylistBtn() {
         WebElement deletePlaylistBtn = waitUntilClickable(delPlaylistBtn);
         deletePlaylistBtn.click();
     }
-    public void verifyBanner() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(toVerifyBanner));
-    }
-    public List<String> getAllPlaylistNames() {
-        List<WebElement> playlistElements = wait.until(ExpectedConditions.visibilityOfElementLocated(playlistLinks));
+    public List<String> getPlaylistNames() {
+        List<WebElement> playlists = driver.findElements(By.cssSelector("#playlists a"));
         // get playlist names from playlist elements
         List<String> playlistNames = new ArrayList<>();
 
-        for (WebElement playlistElement : playlistElements){
-            playlistNames.add(playlistElement.getText());
+        for (int i = 0; i < playlists.size(); i++) {
+            String playlistName = playlists.get(i).getText();
+            playlistNames.add(playlistName);
         }
-        return playlistNames;
         System.out.println(playlistNames);
+        return playlistNames;
     }
+
 }

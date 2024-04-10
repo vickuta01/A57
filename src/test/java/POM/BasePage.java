@@ -20,6 +20,7 @@ public class BasePage {
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         actions = new Actions(driver);
     }
+    By toVerifyBanner = By.cssSelector(".success");
     public WebElement waitUntilVisible(By element){
         return new WebDriverWait(driver, Duration.ofSeconds(4)).until(ExpectedConditions
                 .visibilityOfElementLocated(element));
@@ -28,5 +29,11 @@ public class BasePage {
     public WebElement waitUntilClickable(By element){
         return new WebDriverWait(driver, Duration.ofSeconds(4)).until(ExpectedConditions
                 .elementToBeClickable(element));
+    }
+    public boolean IsSuccesBannerDisplayed(){
+        return driver.findElement(toVerifyBanner).isDisplayed();
+    }
+    public void refreshPage() {
+        driver.navigate().refresh();
     }
 }

@@ -63,6 +63,10 @@ public class BaseTest {
         searchInput.clear();
         searchInput.sendKeys(text);
     }
+    public WebElement waitUntilVisible(By element){
+        return new WebDriverWait(driver, Duration.ofSeconds(4)).until(ExpectedConditions
+                .visibilityOfElementLocated(element));
+    }
 
     /* @BeforeMethod
     @Parameters({"BaseURL"})
