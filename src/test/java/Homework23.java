@@ -12,7 +12,6 @@ public class Homework23 extends BaseTest{
         String playlistDeletedNotification = "Deleted playlist \"Sanjeelas Playlist1.\"";
 
         LoginPage loginPage = new LoginPage(driver);
-
         loginPage.provideEmail("sanjeela.chitrakar@testpro.io")
                 .providePassword("te$t$tudent1")
                 .clickSubmitBtn();
