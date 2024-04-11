@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Parameters;
 
 import java.time.Duration;
 
@@ -26,7 +27,28 @@ public class BaseTest {
 
 
     }
+
+    //With parameter
+
     @BeforeMethod
+    @Parameters({"BaseURL"})
+    public void launchBrowser(String baseURL){
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().window().maximize();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        actions=new Actions(driver);
+        navigateToPage(baseURL);
+
+    }
+
+    public void navigateToPage(String url) {
+        driver.get(url);
+    }
+
+   /* @BeforeMethod
     public void launchBrowser(){
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
@@ -39,7 +61,7 @@ public class BaseTest {
 
    public void navigateToPage() {
         driver.get(url);
-    }
+    }*/
     void provideEmail(String email){
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
         emailField.clear();

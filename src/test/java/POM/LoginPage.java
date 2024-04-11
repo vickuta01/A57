@@ -16,6 +16,7 @@ public class LoginPage extends BasePage{
     By emailField= By.cssSelector("input[type='email']");
     By passwordField = By.cssSelector("input[type='password']");
     By submitBtn=By.cssSelector("button[type='submit']");
+    By login =By.cssSelector("button[type='submit']");// Trying to use login instead of submit
 
     //........................//
     //.....Page Factory.......//
@@ -26,6 +27,7 @@ public class LoginPage extends BasePage{
 
     @FindBy(css = "button[type='submit']")
     WebElement submitBtnLocator;
+
 
     //Page Methods
 
@@ -43,7 +45,9 @@ public class LoginPage extends BasePage{
         public void clickSubmitBtn(){
         findElement(submitBtn).click();
 
+
     }
+
 
     //Methods using Page Factory Elements
 
@@ -63,4 +67,6 @@ public class LoginPage extends BasePage{
     }
 
 
+    public void login() {
+    }
 }
