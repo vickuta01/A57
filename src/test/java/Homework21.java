@@ -14,7 +14,7 @@ public class Homework21 extends BaseTest{
         provideEmail("yurii.lyndiuk@testpro.io");
         providePassword("jjbuQe8D");
         clickLoginBtn();
-        //Double-click on the Playlist and rename
+        //Double-click on the Playlist
         doubleClickPlaylist();
         //Rename Playlist
         editPlayList();
@@ -24,17 +24,16 @@ public class Homework21 extends BaseTest{
     }
 
     public void editPlayList() {
-        WebElement edit =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@name='name']")));
-        edit.clear();
-        edit.sendKeys("homework21" + Keys.ENTER);
+        WebElement edit =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
+        edit.sendKeys(Keys.chord(Keys.CONTROL, "A", Keys.BACK_SPACE));
+        edit.sendKeys("homework21");
+        edit.sendKeys(Keys.ENTER);
     }
 
     public void doubleClickPlaylist() {
         WebElement playList = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//section[@id='playlists']//li[@class='playlist playlist'][1]")));
         actions.doubleClick(playList).perform();
-        WebElement edit =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@name='name']")));
-        edit.clear();
-        edit.sendKeys("homework21" + Keys.ENTER);
+
 
     }
     public String getUpdatedPlaylistMsg() {
