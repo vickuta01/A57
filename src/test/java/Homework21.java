@@ -6,9 +6,10 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class Homework21 extends BaseTest{
+      String newPlaylistName = "homework21";
     @Test
     public void renamePlaylist() {
-        String expectedupdatedPlailistMsg = "Updated Playlist \"homework21.\"";
+        String expectedupdatedPlailistMsg = "Updated Playlist \""+newPlaylistName+".\"";
         //Steps
         //Login
         provideEmail("yurii.lyndiuk@testpro.io");
@@ -26,7 +27,7 @@ public class Homework21 extends BaseTest{
     public void editPlayList() {
         WebElement edit =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
         edit.sendKeys(Keys.chord(Keys.CONTROL, "A", Keys.BACK_SPACE));
-        edit.sendKeys("homework21");
+        edit.sendKeys(newPlaylistName);
         edit.sendKeys(Keys.ENTER);
     }
 
