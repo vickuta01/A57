@@ -9,7 +9,7 @@ public class Homework21 extends BaseTest{
       String newPlaylistName = "homework21";
     @Test
     public void renamePlaylist() {
-        String expectedupdatedPlailistMsg = "Updated Playlist \""+newPlaylistName+".\"";
+        String expectedupdatedPlailistMsg = "Updated playlist \""+newPlaylistName+".\"";
         //Steps
         //Login
         provideEmail("yurii.lyndiuk@testpro.io");
