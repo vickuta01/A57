@@ -41,4 +41,7 @@ public class LoginPage extends BasePage{
         enterPassword(password);
         clickLoginBtn();
     }
+    public boolean isSubmitLoginBtnDisplayed(){
+        return driver.findElement(pressLoginBtn).isDisplayed();
+    }
 }

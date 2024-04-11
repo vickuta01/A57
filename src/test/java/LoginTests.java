@@ -1,7 +1,5 @@
 import POM.HomePage;
 import POM.LoginPage;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -12,10 +10,9 @@ public class LoginTests extends BaseTest {
 
 //      Added ChromeOptions argument below to fix websocket error
         LoginPage loginPage = new LoginPage(driver);
-        String url = "https://qa.koel.app/";
-        loginPage.clickLoginBtn();
-        Assert.assertEquals(driver.getCurrentUrl(), url);
-        driver.quit();
+        loginPage.login("","");
+        Assert.assertTrue(loginPage.isSubmitLoginBtnDisplayed());
+        //Assert.assertEquals(driver.getCurrentUrl(), url);
     }
 
     @Test
@@ -25,29 +22,20 @@ public class LoginTests extends BaseTest {
         // Steps
         LoginPage loginPage = new LoginPage(driver);
         HomePage homepage = new HomePage(driver);
-        loginPage.enterEmail("grigore.crepciuc@testpro.io");
-        loginPage.enterPassword("te$t$tudent");
-        loginPage.clickLoginBtn();
+        loginPage.login("grigore.crepciuc@testpro.io","te$t$tudent");
         // Expected Result
         Assert.assertTrue(homepage.getAvatar());
-        driver.quit();
     }
 
    @Test
-    public void loginInvalidEmailValidPassword() throws InterruptedException {
+    public void loginInvalidEmailValidPassword() {
         // Pre-condition
         // Added ChromeOptions argument below to fix websocket error
         // Steps
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.enterEmail("invalid@class.com");
-        loginPage.enterPassword("te$t$tudent");
-        loginPage.clickLoginBtn();
-        Thread.sleep(2000); // Sleep or pause for 2 seconds (adjust as needed)
+        loginPage.login("invalid@class.com","te$t$tudent");
         // Expected Result
-        String url = "https://qa.koel.app/";
         Assert.assertEquals(driver.getCurrentUrl(), url); // https://qa.koel.app/
-        // Post-condition
-        driver.quit();
     }
 
     @Test
@@ -56,15 +44,9 @@ public class LoginTests extends BaseTest {
         // Added ChromeOptions argument below to fix websocket error
         // Steps
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.enterEmail("demo@class.com");
-        loginPage.clickLoginBtn();
-        Thread.sleep(2000); // Sleep or pause for 2 seconds (adjust as needed)
+        loginPage.login("grigore.crepciuc@testpro.io","");
         // Expected Result
-        String url = "https://qa.koel.app/";
         Assert.assertEquals(driver.getCurrentUrl(), url); //https://qa.koel.app/
-
-        // Post-condition
-        driver.quit();
     }
     @Test(dataProvider = "NegativeLoginTestData", dataProviderClass = TestDataProvider.class)
     public void negativeLoginTest(String email, String password) throws InterruptedException {
