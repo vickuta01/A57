@@ -2,6 +2,8 @@ package pageobjectmodel;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
 
@@ -10,25 +12,32 @@ public class LoginPage extends BasePage {
         super(givenDriver);
     }
 
-    private By emailField = By.cssSelector("input[type='email']");
+    //WebElements
+    @FindBy(css="input[type='email']")
+    private WebElement emailField;
 
-    private By passwordField = By.cssSelector("input[type='password']");
+    @FindBy(css="input[type='password']")
+    private WebElement passwordField;
 
-    private By logInBtn = By.cssSelector("button[type='submit']");
+    @FindBy(css="button[type='submit']")
+    private WebElement logInBtn;
 
-    public void provideEmail(String email)
+    public LoginPage provideEmail(String email)
     {
-        findElement(emailField).sendKeys(email);
+        emailField.sendKeys(email);
+        return this;
     }
 
-    public void providePassword(String password)
+    public LoginPage providePassword(String password)
     {
-        findElement(passwordField).sendKeys(password);
+        passwordField.sendKeys(password);
+        return this;
     }
 
-    public void clickLogIn()
+    public LoginPage clickLogIn()
     {
-        findElement(logInBtn).click();
+        logInBtn.click();
+        return this;
     }
 
     public void login()

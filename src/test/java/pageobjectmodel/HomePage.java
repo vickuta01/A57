@@ -2,6 +2,8 @@ package pageobjectmodel;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends BasePage {
 
@@ -10,21 +12,24 @@ public class HomePage extends BasePage {
         super(givenDriver);
     }
 
-    private By playerControlsBtn = By.cssSelector("#mainFooter div[class='side player-controls']");
+    //WebElements
+    @FindBy(css = "#mainFooter div[class='side player-controls']")
+    private WebElement playerControlsBtn;
 
-    private By playNextSongBtn = By.cssSelector("#mainFooter span[class='play']");
+    @FindBy(css = "#mainFooter span[class='play']")
+    private WebElement playNextSongBtn;
 
-    private By soundBar = By.cssSelector("img[alt='Sound bars']");
+    @FindBy(css = "img[alt='Sound bars']")
+    private  WebElement soundBar;
 
-    public void playNextSong()
-    {
-        findElement(playerControlsBtn).click();
-        findElement(playNextSongBtn).click();
+    public void playNextSong() {
+        playerControlsBtn.click();
+        playNextSongBtn.click();
     }
 
     public boolean isSoundBarVisible()
     {
-       return findElement(soundBar).isDisplayed();
+       return soundBar.isDisplayed();
     }
 
 
