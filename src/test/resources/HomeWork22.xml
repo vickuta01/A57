@@ -7,10 +7,7 @@
 
     <test name="HomeWork22" preserve-order="false">
         <classes>
-            <class name="BaseTest"/>
-            <class name = "LoginTest"/>
             <class name="HomeWork22"/>
-
         </classes>
     </test>
 </suite>

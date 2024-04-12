@@ -9,9 +9,9 @@ public class LoginPage extends BasePages{
         super(givenDriver);
     }
     //webElements
-    By emailField = By.cssSelector("input[type='email']");
-    By passwordField = By.cssSelector("input[type='password']");
-    By loginBtn = By.cssSelector("button[type='submit']");
+    private By emailField = By.cssSelector("input[type='email']");
+    private By passwordField = By.cssSelector("input[type='password']");
+    private By loginBtn = By.cssSelector("button[type='submit']");
 
     //helper methods
 

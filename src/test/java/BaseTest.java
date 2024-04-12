@@ -10,8 +10,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 
 import java.time.Duration;
-
-@Test
 public class BaseTest{
     public WebDriver driver;
     public WebDriverWait wait;
@@ -25,7 +23,7 @@ public class BaseTest{
 
     @BeforeMethod
     @Parameters({"url"})
-    public void launchBrowser() {
+    public void launchBrowser(String url) {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);
@@ -33,37 +31,13 @@ public class BaseTest{
         driver.manage().window().maximize();
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         actions = new Actions(driver);
-        navigateToPage();
-    }
-
-    public void navigateToPage() {
         driver.get(url);
     }
-
     @AfterMethod
     public void closeBrowser() {
         driver.quit();
     }
 
-    public void provideEmail(String email) {
-        //WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
-        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='email']")));
-        emailField.clear();
-        emailField.sendKeys(email);
-    }
-
-    public void providePassword(String password) {
-        //WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
-        WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='password']")));
-        passwordField.clear();
-        passwordField.sendKeys(password);
-    }
-
-    void clickLoginBtn() {
-        //WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
-        WebElement submit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
-        submit.click();
-    }
 
     public void searchSong(String songName) {
         //WebElement searchField = driver.findElement(By.cssSelector("input[type='search']"));
@@ -102,26 +76,3 @@ public class BaseTest{
         return successAlertMessage.getText();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
