@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 public class HomeWork21 extends BaseTest{
     @Test
     public void renamePlayList(){
-        String expectedResult = "Updated playlist \"Test1.\"";
+        String expectedResult = "Updated playlist \"Test2.\"";
 
 
         //GIVEN
@@ -33,12 +33,12 @@ public class HomeWork21 extends BaseTest{
     public void replacePlaylistName() {
         WebElement replaceName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
         replaceName.sendKeys(Keys.chord(Keys.COMMAND, "A", Keys.DELETE));
-        replaceName.sendKeys("Test1");
+        replaceName.sendKeys("Test2");
         replaceName.sendKeys(Keys.ENTER);
     }
 
     public void doubleClickPlayList() {
-       WebElement playListName = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".playlist:nth-child(2)")));
+       WebElement playListName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[id='playlists']")));
         actions.doubleClick(playListName).perform();
     }
 

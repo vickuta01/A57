@@ -3,20 +3,23 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.HomePage;
+import pages.LoginPage;
 
 public class HomeWork20 extends BaseTest {
+
     @Test
     public void deletePlayList() {
+        LoginPage loginpage = new LoginPage(driver);
+        HomePage homepage = new HomePage(driver);
 
         String expectedDeletedMsg = "Deleted playlist \"Test.\"";
 
         //GIVEN
-        provideEmail("elzat.nurmanbetova@testpro.io");
-        providePassword("kochkor123-Q!");
-        clickLoginBtn();
+
 
         //WHEN
-        clickPlayList("Test");
+
         deletePlayButton();
 
 
