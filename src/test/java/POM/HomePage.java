@@ -13,7 +13,7 @@ public class HomePage extends BasePage{
     public HomePage(WebDriver givenDriver){super(givenDriver);}
 
     //Locator
-By firstPlaylist =By.cssSelector(".playlist:nth-child(3)");
+    By firstPlaylist =By.cssSelector(".playlist:nth-child(3)");
     By playlistNameField =By.cssSelector("[name='name']");
     By renamePlaylistSuccessMsg= By.cssSelector("div.success.show");
     By userAvatarIcon = By.cssSelector("img.avatar");

@@ -1,10 +1,10 @@
 package POM;
 
-import net.bytebuddy.implementation.bind.annotation.Super;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LoginPage extends BasePage{
 
@@ -27,6 +27,8 @@ public class LoginPage extends BasePage{
 
     @FindBy(css = "button[type='submit']")
     WebElement submitBtnLocator;
+    @FindBy(css = "button[type='submit']")
+    WebElement loginBtnLocator;         /// Added to match with my homework22
 
 
     //Page Methods
@@ -67,6 +69,10 @@ public class LoginPage extends BasePage{
     }
 
 
+
+
     public void login() {
+        WebElement loginBtn=wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
+        loginBtn.click(); //To fix error until I figure out the problem of mismatching the call on homework-22(loginpage.login())
     }
 }

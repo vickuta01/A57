@@ -8,7 +8,7 @@ public class Homework22 extends BaseTest {
     //Prerequisite -create Playlist
 
     @Test
-    public void renamePlaylist() {
+    public void renamePlaylist()  {
         String newPlaylistName = "Homework22";
         String updatedPlaylistMsg="Updated playlist \"Homework22.\"";
 
@@ -20,7 +20,6 @@ public class Homework22 extends BaseTest {
         homePage.doubleClickFirstPlaylist();
 
         homePage.enterNewPlaylistName(newPlaylistName);
-
 
         Assert.assertEquals(homePage.getRenamePlaylistSuccessMsg(),updatedPlaylistMsg);
     }
