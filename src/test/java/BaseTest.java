@@ -24,6 +24,7 @@ public class BaseTest {
     public WebDriverWait wait = null;
     //public String url = "https://qa.koel.app/";
     public static Actions actions = null;
+    //public static WebDriver driver = null;
 
     @BeforeSuite
     static void setupClass() {
