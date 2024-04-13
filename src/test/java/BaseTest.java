@@ -20,13 +20,21 @@ import org.testng.annotations.Parameters;
 
 import javax.swing.*;
 import java.net.URI;
+import java.net.URL;
 import java.time.Duration;
 import java.net.MalformedURLException;
+import java.util.HashMap;
 import java.util.UUID;
 
 
 public class BaseTest {
     public static WebDriver driver;
+
+    private static final ThreadLocal<WebDriver> threadDriver= new ThreadLocal<>();
+
+    public static WebDriver getDriver(){
+        return threadDriver.get();
+    }
     WebDriverWait wait;
     public Actions actions= null;
     public String url = null;
@@ -51,19 +59,27 @@ public class BaseTest {
         //options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
 
         //driver = new ChromeDriver(options);
-        driver = pickBrowser(System.getProperty("browser"));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().window().maximize();
+        //driver = pickBrowser(System.getProperty("browser"));
+        threadDriver.set(pickBrowser(System.getProperty("browser"))); //this one for parallel testing
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        //driver.manage().window().maximize();
+        getDriver().manage().window().maximize();
         url = BaseURL;
-        driver.get(url);
+        //driver.get(url);
+        getDriver().get(url);
         wait = new WebDriverWait(driver, Duration.ofSeconds(4));
         actions = new Actions(driver);
     }
-    @AfterMethod
-    public void closeBrowser(){
-        driver.quit();
-    }
-
+    //@AfterMethod
+    //public void closeBrowser(){
+        //driver.quit();
+    //}
+@AfterMethod
+    public void tearDown(){
+        threadDriver.get().close();
+        threadDriver.remove();
+}
     public static WebDriver pickBrowser (String browser) throws MalformedURLException{
         DesiredCapabilities caps = new DesiredCapabilities();
         String gridURL = "http://10.0.0.105:4444";
@@ -92,6 +108,8 @@ public class BaseTest {
             case "grid-edge":
                 caps.setCapability("browserName", "MicrosoftEdge");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
+            case "cloud":
+                return lambdaTest();
 
             default:
                 WebDriverManager.chromedriver().setup();
@@ -105,6 +123,24 @@ public class BaseTest {
         }
     }
 
+    public static WebDriver lambdaTest() throws MalformedURLException{
+        String hubURL ="http://hub.lambdatest.com/wd/hub";
+        String userName ="a23ska";
+        String accessKey ="51pxhdIT5SNNtUNX3dbZAeYq5wfT2JMoAoPKTS1MguEsK6sHHz";
+
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("browserName", "chrome");
+        capabilities.setCapability("browserVersion", "123.0");
+        HashMap<String, Object> ltOptions = new HashMap<String, Object>();
+        ltOptions.put("username", "a23ska");
+        ltOptions.put("accessKey", "51pxhdIT5SNNtUNX3dbZAeYq5wfT2JMoAoPKTS1MguEsK6sHHz");
+        ltOptions.put("project", "Koel Automation");
+        ltOptions.put("selenium_version", "4.0.0");
+        ltOptions.put("w3c", true);
+        capabilities.setCapability("LT:Options", ltOptions);
+
+        return driver= new RemoteWebDriver(new URL(hubURL), capabilities);
+    }
     public void clickLoginBtn() {
         WebElement submit = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']")));
         submit.click();

@@ -8,8 +8,8 @@ public class Homework22 extends BaseTest {
     public void deletePlaylistTest() {
         //String deletedPlaylistMessage = "Deleted playlist";
 
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
 
 
         loginPage.login();
