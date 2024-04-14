@@ -9,8 +9,8 @@ public class LoginTests extends BaseTest {
     @Test
     public void loginValidEmailPassword() throws InterruptedException {
         //navigateToPage();
-        provideEmail("demosdasd@class.com");
-        providePassword("te$t$tudent");
+        provideEmail("dwayne.speller@testpro.io");
+        providePassword("Testing6600.");
         clickLoginBtn();
         Thread.sleep(2000); // Sleep or pause for 2 seconds (adjust as needed)
         WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
@@ -21,8 +21,8 @@ public class LoginTests extends BaseTest {
     @Test
     public void loginInvalidEmailValidPassword() throws InterruptedException {
         //navigateToPage();
-        provideEmail("demo@class.com");
-        providePassword("invalid");
+        provideEmail("dwayne.speller@testpro.io");
+        providePassword("Testing6600.");
         clickLoginBtn();
         Thread.sleep(2000); // Sleep or pause for 2 seconds (adjust as needed)
         // Expected Result
@@ -33,8 +33,8 @@ public class LoginTests extends BaseTest {
     public void loginValidEmailEmptyPassword() throws InterruptedException {
         //steps
         //navigateToPage();
-        provideEmail("demo@class.com");
-        providePassword("");
+        provideEmail("dwayne.speller@testpro.io");
+        providePassword("Testing6600.");
         clickLoginBtn();
         Thread.sleep(2000); // Sleep or pause for 2 seconds (adjust as needed)
         // Expected Result
