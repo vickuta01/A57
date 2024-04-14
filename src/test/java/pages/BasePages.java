@@ -26,4 +26,5 @@ public class BasePages {
     public void doubleClick(By locator){
         actions.doubleClick(findElement(locator)).perform();
     }
+
 }

@@ -4,16 +4,15 @@ import pages.HomePage;
 import pages.LoginPage;
 
 public class HomeWork22 extends BaseTest{
-    @Test
+        @Test
+        public void loginValidTest(){
+            LoginPage loginpage = new LoginPage(driver);
+            HomePage homepage = new HomePage(driver);
+            loginpage.provideEmail("elzat.nurmanbetova@testpro.io");
+            loginpage.providePassword("kochkor123-Q!");
+            loginpage.clickSubmit();
+            Assert.assertTrue(homepage.getUserAvatar().isDisplayed());
 
-    public void loginValidTest(){
-        LoginPage loginpage = new LoginPage(driver);
-        HomePage homepage = new HomePage(driver);
-        loginpage.provideEmail("elzat.nurmanbetova@testpro.io");
-        loginpage.providePassword("kochkor123-Q!");
-        loginpage.clickSubmit();
-        Assert.assertTrue(homepage.getUserAvatar().isDisplayed());
+        }
 
     }
-
-}

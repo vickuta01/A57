@@ -18,9 +18,7 @@ public class BaseTest{
     @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
-
     }
-
     @BeforeMethod
     @Parameters({"url"})
     public void launchBrowser(String url) {
@@ -33,6 +31,8 @@ public class BaseTest{
         actions = new Actions(driver);
         driver.get(url);
     }
+
+    //return driver = new RemoteWebDriver(new URL("https://" +userName + ":" +accessKey + hubURL), capabilities);
     @AfterMethod
     public void closeBrowser() {
         driver.quit();
