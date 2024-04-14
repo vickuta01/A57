@@ -12,13 +12,17 @@ public class Homework17 extends BaseTest{
         provideEmail("joseph.petersen@testpro.io");
         providePassword("QaOneTwo!!!");
         clickLoginBtn();
+        Thread.sleep(2000);
         searchSong("Dark");
+        Thread.sleep(2000);
         clickViewAllBtn();
+        Thread.sleep(2000);
         selectFirstSongResult();
         Thread.sleep(4000);
         clickAddToBtn();
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         choosePlaylist();
+        Thread.sleep(2000);
         //Assertion
         Assert.assertEquals(getAddToPlaylistSuccessMsg(), expectedSongAddedMessage);
     }
