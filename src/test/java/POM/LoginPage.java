@@ -53,8 +53,8 @@ public class LoginPage extends BasePage{
 
     //Methods using Page Factory Elements
 
-    public LoginPage clickSubmitBtnLocator(){
-        submitBtnLocator.click();
+    public LoginPage clickOnLoginBtnLocator(){
+        loginBtnLocator.click();
         return this;
     }
     public LoginPage provideEmailToLogin(String email){
