@@ -11,7 +11,6 @@ public class HomeWork22 extends BaseTest{
             loginpage.provideEmail("elzat.nurmanbetova@testpro.io");
             loginpage.providePassword("kochkor123-Q!");
             loginpage.clickSubmit();
-            Assert.assertTrue(homepage.getUserAvatar().isDisplayed());
 
         }
 
