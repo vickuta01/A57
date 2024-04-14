@@ -1,3 +1,5 @@
+import POM.HomePage;
+import POM.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
