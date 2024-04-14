@@ -1,25 +1,50 @@
+import Pages.HomePage;
+import Pages.LoginPage;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.time.Duration;
-
 public class LoginTests extends BaseTest {
     @Test
-    public void loginEmptyEmailPassword() {
+    public void loginValidEmailEmptyPasswordTest(){
+        WebDriver driver = null;
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+        loginPage.provideEmail("nemanja.sijacic@testpro.io");
+        loginPage.providePassword("Vojvodina.021");
+        loginPage.clickSubmit();
+        Assert.assertEquals(driver.getCurrentUrl(),url);
+    }
+    @Test
+    public void successfullLoginTest(){
+        WebDriver driver = null;
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+        loginPage.provideEmail("nemanja.sijacic@testpro.io");
+        loginPage.providePassword("Vojvodina.021");
+        loginPage.clickSubmit();
+        Assert.assertTrue(homePage.getUserAvatarIcon().isDisplayed());
+    }
+    @Test
+    public <LoginPage> void loginInvalidEmailPasswordTest(){
+        WebDriver driver = null;
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+        loginPage.provideEmail("nemanja.sijacic@testpro.io");
+        loginPage.providePassword("Vojvodina.021");
+        loginPage.clickSubmit();
 
-//      Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
+        String url;
+        Assert.assertEquals(driver.getCurrentUrl(),url);
+    }
 
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    @Test
 
-        String url = "https://qa.koel.app/";
-        driver.get(url);
-        Assert.assertEquals(driver.getCurrentUrl(), url);
-        driver.quit();
+    public void succesfullLoginPF(){
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+
+        loginPage.provideEmail("nemanja.sijacic@testpro.io").providePassword("Vojvodina.021").clickSubmitBnt();
+        Assert.assertTrue(homePage.getUserAvatarIcon().isDisplayed());
     }
 }
+
