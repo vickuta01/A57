@@ -10,8 +10,8 @@ public class ProfileTest extends BaseTest{
     @Test
     public void changeProfileName() throws InterruptedException {
         //Login To Koel
-        provideEmail("demo@class.com");
-        providePassword("te$t$tudent");
+        provideEmail("joseph.petersen@testpro.io");
+        providePassword("QaOneTwo!!!");
         clickLoginBtn();
         Thread.sleep(2000);
         //click on Avatar Icon to navigate to Profile
@@ -21,7 +21,7 @@ public class ProfileTest extends BaseTest{
         String randomName = generateRandomName();
         System.out.println("Randon name is: "+randomName);
         //Current Password
-        provideCurrentPassword("te$t$tudent");
+        provideCurrentPassword("QaOneTwo!!!");
         Thread.sleep(2000);
         //provide new Generated name
         provideProfileName(randomName);

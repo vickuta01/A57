@@ -9,8 +9,8 @@ public class LoginTests extends BaseTest {
     @Test
     public void loginValidEmailPassword() throws InterruptedException {
         //navigateToPage();
-        provideEmail("demosdasd@class.com");
-        providePassword("te$t$tudent");
+        provideEmail("joseph.petersen@testpro.io");
+        providePassword("QaOneTwo!!!");
         clickLoginBtn();
         Thread.sleep(2000); // Sleep or pause for 2 seconds (adjust as needed)
         WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
@@ -41,5 +41,4 @@ public class LoginTests extends BaseTest {
         Assert.assertEquals(driver.getCurrentUrl(), url); //https://qa.koel.app/
         System.out.println("Just Testing console");
     }
-
 }
