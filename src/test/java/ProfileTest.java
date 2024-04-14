@@ -10,9 +10,9 @@ public class ProfileTest extends BaseTest{
     @Test
     public void changeProfileName() throws InterruptedException {
         //Login To Koel
-        provideEmail("demo@class.com");
-        providePassword("te$t$tudent");
-        clickLoginBtn();
+        //provideEmail("demo@class.com");
+      //  providePassword("te$t$tudent");
+       // clickLoginBtn();
         Thread.sleep(2000);
         //click on Avatar Icon to navigate to Profile
         clickOnAvatarIcon();

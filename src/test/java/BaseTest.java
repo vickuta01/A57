@@ -14,35 +14,16 @@ import java.time.Duration;
 
 public class BaseTest {
 
-    public WebDriver driver;
-    public WebDriverWait wait;
-    public Actions actions;
-    //public String url = "https://qa.koel.app/";
+    public WebDriver driver = null;
+    public WebDriverWait wait = null;
+    public Actions actions = null;
 
-    /*@DataProvider(name="NegativeLoginTestData")
-    public Object[][] getDataFromDataProvider(){
-        return new Object[][]{
-                {"invalidEmail@class.com","invalid"},
-                {"demo@class.com","invalid"},
-                {"",""},
-                {"invalidEmail@class.com","te$t$tudent"},
-        };
-    }*/
+
 
     @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
-
-    /*@BeforeMethod
-    public void launchBrowser(){
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().window().maximize();
-        navigateToPage();
-    }*/
 
     @BeforeMethod
     @Parameters({"BaseURL"})
@@ -52,10 +33,7 @@ public class BaseTest {
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
-        wait =new WebDriverWait(driver, Duration.ofSeconds(10));
-        actions = new Actions(driver);
-        //String url = baseURL;
-        navigateToPage(baseURL);
+        driver.get(baseURL);
     }
 
 
@@ -64,31 +42,5 @@ public class BaseTest {
         driver.quit();
     }
 
-    void clickLoginBtn() {
-       WebElement submit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
-        // WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
-        submit.click();
-    }
 
-    public void providePassword(String password) {
-        WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='password']")));
-        // WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
-        passwordField.clear();
-        passwordField.sendKeys(password);
-    }
-
-    public void provideEmail(String email) {
-        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='email']")));
-        // WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
-        emailField.clear();
-        emailField.sendKeys(email);
-    }
-
-    /*public void navigateToPage() {
-        driver.get(url);
-    }*/
-
-    public void navigateToPage(String url) {
-        driver.get(url);
-    }
 }
