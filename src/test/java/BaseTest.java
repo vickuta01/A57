@@ -29,7 +29,9 @@ public class BaseTest {
 
     @BeforeMethod
     @Parameters({"BaseURL"})
+
     public void launchBrowser(String baseURL) throws MalformedURLException{
+
         driver = pickBrowser(System.getProperty("browser"));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
