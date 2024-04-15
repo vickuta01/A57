@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
 <suite name="TestNG">
     <parameter name="url" value="https://qa.koel.app/"/>
-    <test name="TestNG" preserve-order="false">
+
+    <test name="HomeWork21" preserve-order="false">
         <classes>
-            <class name="HomeWork22"/>
+            <class name="BaseTest"/>
+            <class name="HomeWork21"/>
+
         </classes>
     </test>
 </suite>
