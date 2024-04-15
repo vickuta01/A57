@@ -5,7 +5,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -14,14 +20,16 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Parameters;
 
+import java.net.MalformedURLException;
+import java.net.URI;
 import java.time.Duration;
 
 public class BaseTest {
 
-    public WebDriver driver = null;
-    public WebDriverWait wait = null;
-    public String url = null;
-    public Actions actions = null;
+    public static WebDriver driver = null;
+    public static WebDriverWait wait = null;
+    public static String url = null;
+    public static Actions actions = null;
 
     //"https://qa.koel.app/";
 
@@ -32,17 +40,18 @@ public class BaseTest {
 
     @BeforeMethod
     @Parameters({"BaseURL"})
-    public void launchBrowser(String baseURL) {
+    public static void launchBrowser(String baseURL) throws MalformedURLException {
         // Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
+       /* ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-notifications");
         options.addArguments("--incognito");
         options.addArguments("--start-maximized");
-        options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+        options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});*/
 
-        driver = new ChromeDriver(options);
+        //driver = new ChromeDriver(options);
         //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver = pickBrowser(System.getProperty("browser"));
         wait = new WebDriverWait(driver,Duration.ofSeconds(10));
         actions = new Actions(driver);
         url = baseURL;
@@ -50,14 +59,50 @@ public class BaseTest {
         //Thread.sleep(1000);
 
     }
-
-    public void navigateToPage() {
+    public static void navigateToPage() {
         driver.get(url);
     }
 
     @AfterMethod
     public void closeBrowser() {
         driver.quit();
+    }
+
+    public static WebDriver pickBrowser(String browser) throws MalformedURLException {
+        DesiredCapabilities caps = new DesiredCapabilities();
+        String gridURL = "http://10.0.0.43:4444";
+
+        switch(browser)
+        {
+            case "MicrosoftEdge": //gradle clean test -Dbrowser=MicrosoftEdge
+                WebDriverManager.edgedriver().setup();
+                EdgeOptions edgeOptions = new EdgeOptions();
+                edgeOptions.addArguments("--remote-allow-origins=*");
+                edgeOptions.addArguments("--disable-notifications");
+                edgeOptions.addArguments("--incognito");
+                edgeOptions.addArguments("--start-maximized");
+                edgeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+                return driver = new EdgeDriver(edgeOptions);
+
+            case "grid-edge": //gradle clean test -Dbrowser=grid-edge
+                caps.setCapability("browserName","MicrosoftEdge");
+                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
+
+            case "grid-chrome": //gradle clean test -Dbrowser=grid-chrome
+                caps.setCapability("browserName","chrome");
+                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
+
+            default:
+                WebDriverManager.chromedriver().setup();
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.addArguments("--remote-allow-origins=*");
+                chromeOptions.addArguments("--disable-notifications");
+                chromeOptions.addArguments("--incognito");
+                chromeOptions.addArguments("--start-maximized");
+                chromeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+                return driver = new ChromeDriver(chromeOptions);
+
+        }
     }
 
    /* public void provideEmail(String email) {
