@@ -12,30 +12,6 @@ public class HomePage extends BasePage{
     public HomePage(WebDriver givenDriver) {
         super(givenDriver);
     }
-    ///////////////////////////////////////////////////////////////////
-    /*By userAvatarIcon = By.cssSelector("img.avatar");
-
-    public WebElement getUserAvatar(){
-        return findElement(userAvatarIcon);
-    }
-    /////////////////////////////////////////////////////////////////////
-    /*private By selectedPlayList = By.xpath("//li[@class= 'playlist playlist']//a[contains(text(), 'My Play List')]");
-    private By selectedPLField = By.cssSelector("[name = 'name']");
-    private By renamedPlayList = By.xpath("//div[@class= 'success show']");
-
-    public void doubleClickSelectedPL(){
-        doubleClick(selectedPlayList);
-    }
-    public void cleanAndEnterNewNave(String newPlayListName){
-        findElement(selectedPLField).sendKeys(Keys.chord(Keys.COMMAND, "A", Keys.DELETE));
-        findElement(selectedPLField).sendKeys(newPlayListName);
-        findElement(selectedPLField).sendKeys(Keys.ENTER);
-    }
-    public String getRenamedNewPlayList(){
-        return findElement(renamedPlayList).getText();
-    }*/
-////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////
     @FindBy(xpath = "//li[@class= 'playlist playlist']//a[contains(text(), 'My Play List')]")
     WebElement selectedListLocator;
     @FindBy(css = "[name = 'name']")
