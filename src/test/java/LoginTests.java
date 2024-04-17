@@ -20,8 +20,10 @@ public class LoginTests extends BaseTest {
         // Pre-condition
         // Added ChromeOptions argument below to fix websocket error
         // Steps
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homepage = new HomePage(driver);
+        //LoginPage loginPage = new LoginPage(driver);
+        //HomePage homepage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homepage = new HomePage(getDriver());
         loginPage.login("grigore.crepciuc@testpro.io","te$t$tudent");
         // Expected Result
         Assert.assertTrue(homepage.getAvatar());
@@ -32,7 +34,8 @@ public class LoginTests extends BaseTest {
         // Pre-condition
         // Added ChromeOptions argument below to fix websocket error
         // Steps
-        LoginPage loginPage = new LoginPage(driver);
+        //LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
         loginPage.login("invalid@class.com","te$t$tudent");
         // Expected Result
         Assert.assertEquals(driver.getCurrentUrl(), url); // https://qa.koel.app/
@@ -43,7 +46,8 @@ public class LoginTests extends BaseTest {
         // Pre-condition
         // Added ChromeOptions argument below to fix websocket error
         // Steps
-        LoginPage loginPage = new LoginPage(driver);
+        //LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
         loginPage.login("grigore.crepciuc@testpro.io","");
         // Expected Result
         Assert.assertEquals(driver.getCurrentUrl(), url); //https://qa.koel.app/

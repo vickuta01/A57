@@ -27,11 +27,22 @@ public class BaseTest {
     public static String url = "https://qa.koel.app/";
     public static WebDriverWait wait = null;
     public static Actions actions = null;
+    // for parallel execution
+    private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
+    // THREAD_LOCAL of type ThreadLocal<WebDriver>. ThreadLocal is a mechanism that allows
+    // storing and retrieving unique variable values for each thread. In this case,
+    // ThreadLocal<WebDriver> will be used to store an instance of WebDriver
+    // associated with each thread during test execution.
 
-    @BeforeSuite
+    public static WebDriver getDriver() {
+        return threadDriver.get();
+    }
+
+
+    /*@BeforeSuite
     static void setupDriver() {
         WebDriverManager.chromedriver().setup();
-    }
+    }*/
 
     @BeforeMethod
     public void setUpBrowser() throws MalformedURLException{
@@ -41,11 +52,23 @@ public class BaseTest {
 //        options.addArguments("--start-maximized");
 //
 //        driver = new ChromeDriver(options);
-        driver = pickBrowser(System.getProperty("browser"));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        //driver = pickBrowser(System.getProperty("browser"));
+        threadDriver.set(pickBrowser(System.getProperty("browser")));
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        getDriver().manage().window().maximize();
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         actions = new Actions(driver);
         openUrl();
+    }
+    public void openUrl() {
+        String url = "https://qa.koel.app/";
+        getDriver().get(url);
+    }
+    @AfterMethod
+    public void tearDown(){
+        threadDriver.get().close();
+        threadDriver.remove();
     }
     private WebDriver pickBrowser(String browser) throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -72,15 +95,15 @@ public class BaseTest {
                 return driver = new ChromeDriver(options);
         }
     }
-    @AfterMethod(alwaysRun = true)
+    /*@AfterMethod(alwaysRun = true)
     public void tearDown(){
         driver.quit();
-    }
+    }*/
 
-   public void openUrl() {
+   /*public void openUrl() {
         String url = "https://qa.koel.app/";
         driver.get(url);
-    }
+    }*/
     public String generateRandomName(){
         Faker faker = new Faker(new Locale("en-US"));
         String newName = faker.name().firstName();
