@@ -121,8 +121,8 @@ public class BaseTest {
 //       browserOptions.setPlatformName("MacOS Monterey");
 //       browserOptions.setBrowserVersion("123.0");
        HashMap<String, Object> ltOptions = new HashMap<String, Object>();
-       ltOptions.put("username", "greytfly");
-       ltOptions.put("accessKey", "7wXbxSZgFhBvIA71RRHCu2VmyU978XYiklFp1wlbK1ucJIB75H");
+       ltOptions.put("username", userName);
+       ltOptions.put("accessKey", accessKey);
        ltOptions.put("project", "Untitled");
        ltOptions.put("w3c", true);
        ltOptions.put("plugin", "java-java");
