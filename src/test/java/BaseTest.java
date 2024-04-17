@@ -17,7 +17,9 @@ import org.testng.annotations.*;
 
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -86,6 +88,8 @@ public class BaseTest {
             case "grid-safari":
                 capabilities.setCapability("browserName", "safari");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), capabilities);
+            case "cloud":
+                return lambdaTest();
             default:
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
@@ -104,6 +108,28 @@ public class BaseTest {
         String url = "https://qa.koel.app/";
         driver.get(url);
     }*/
+   public WebDriver lambdaTest() throws MalformedURLException {
+       String hubURL = "@hub.lambdatest.com/wd/hub";
+       String userName = "greytfly";
+       String accessKey = "7wXbxSZgFhBvIA71RRHCu2VmyU978XYiklFp1wlbK1ucJIB75H";
+       //Capabilities
+       DesiredCapabilities capabilities = new DesiredCapabilities();
+       capabilities.setCapability("browserName","chrome");
+       capabilities.setCapability("browserVersion","123.0");
+
+//       ChromeOptions browserOptions = new ChromeOptions();
+//       browserOptions.setPlatformName("MacOS Monterey");
+//       browserOptions.setBrowserVersion("123.0");
+       HashMap<String, Object> ltOptions = new HashMap<String, Object>();
+       ltOptions.put("username", "greytfly");
+       ltOptions.put("accessKey", "7wXbxSZgFhBvIA71RRHCu2VmyU978XYiklFp1wlbK1ucJIB75H");
+       ltOptions.put("project", "Untitled");
+       ltOptions.put("w3c", true);
+       ltOptions.put("plugin", "java-java");
+       //browserOptions.setCapability("LT:Options", ltOptions);
+       capabilities.setCapability("LT:Options", ltOptions);
+       return new RemoteWebDriver(new URL("https://" + userName + ":" + accessKey + hubURL), capabilities);
+   }
     public String generateRandomName(){
         Faker faker = new Faker(new Locale("en-US"));
         String newName = faker.name().firstName();
