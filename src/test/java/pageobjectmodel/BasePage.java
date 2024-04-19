@@ -24,9 +24,9 @@ public class BasePage {
         PageFactory.initElements(new AjaxElementLocatorFactory(driver, 20), this);
     }
 
-   /* public WebElement findElement(By locator)
+    public WebElement waitForVisibility(WebElement element)
     {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-    }*/
+        return new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(element));
+    }
 
 }

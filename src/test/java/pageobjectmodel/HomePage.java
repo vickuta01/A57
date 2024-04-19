@@ -29,7 +29,7 @@ public class HomePage extends BasePage {
 
     public boolean isSoundBarVisible()
     {
-       return soundBar.isDisplayed();
+       return waitForVisibility(soundBar).isDisplayed();
     }
 
 
