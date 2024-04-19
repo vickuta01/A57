@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="TestHW19">
+<suite name="TestHW19" parallel="methods" tread-count="2">
     <parameter name="baseUrl" value="https://qa.koel.app"/>
     <test name="TestHW19 Test" preserve-order="false">
         <classes>

@@ -6,8 +6,8 @@ import pages.LoginPage;
 public class Homework23 extends BaseTest{
     @Test
     public void renamePlayListHomework23(){
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
 
         String newPlayListName = "IDidIt";
         String updatedPlayListMsg = "Updated playlist \"IDidIt.\"";
