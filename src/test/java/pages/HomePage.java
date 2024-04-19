@@ -20,7 +20,8 @@ public class HomePage extends BasePage{
     WebElement renamedPLocator;
 
     public void doubleClickLocator(){
-    actions.doubleClick(selectedListLocator).perform();
+    //actions.doubleClick(selectedListLocator).perform();
+    actions.moveToElement(selectedListLocator).doubleClick().perform();
     }
     public void cleanEnterListLocator(String newPlayListName){
         selectedNewNameLocator.sendKeys(Keys.chord(Keys.COMMAND, "A", Keys.DELETE));
