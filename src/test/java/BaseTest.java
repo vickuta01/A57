@@ -29,13 +29,13 @@ import java.util.Set;
 import static org.bouncycastle.cms.RecipientId.password;
 
 public class BaseTest {
+    private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
 
-    protected static WebDriver driver = null;
+    protected WebDriver driver = null;
     public WebDriverWait wait = null;
     //public String url = "https://qa.koel.app/";
     public static Actions actions = null;
     //public static WebDriver driver = null;
-    private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
     public static WebDriver getDriver(){
         return threadDriver.get();
     }
