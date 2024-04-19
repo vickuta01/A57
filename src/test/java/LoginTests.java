@@ -59,17 +59,22 @@ public class LoginTests extends BaseTest {
         Assert.assertTrue(homePage.clickAvatarIcon().isDisplayed());
     }
 } */
-import org.testng.Assert;
-import org.testng.annotations.Test;
+
 import Pages.HomePage;
 import Pages.LoginPage;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+import static java.sql.DriverManager.getDriver;
 
 public class LoginTests extends BaseTest {
     @Test
     public static void loginEmptyEmailPasswordTest() {
         LoginPage loginPage = new LoginPage(getThreadLocal());
-        loginPage.provideEmail("");
-        loginPage.providePassword("Vojvodina.021");
+        HomePage homePage = new HomePage(getThreadLocal());
+        loginPage.provideEmail(" ");
+        loginPage.providePassword(" ");
         loginPage.clickLoginBtn();
 
 
@@ -78,7 +83,7 @@ public class LoginTests extends BaseTest {
     @Test
     public static void loginWrongPasswordTest() {
         LoginPage loginPage = new LoginPage(getThreadLocal());
-
+        HomePage homePage = new HomePage(getThreadLocal());
         loginPage.provideEmail("nemanja.sijacic@testpro.io");
                 loginPage.providePassword("Vojvodina.021");
                 loginPage.clickLoginBtn();
@@ -89,11 +94,10 @@ public class LoginTests extends BaseTest {
     @Test
     public static void loginEmptyPasswordTest() {
         LoginPage loginPage = new LoginPage(getThreadLocal());
-
+        HomePage homePage = new HomePage(getThreadLocal());
         loginPage.provideEmail("nemanja.sijacic@testpro.io");
         loginPage.providePassword("");
         loginPage.clickLoginBtn();
-
 
 
     }
@@ -101,11 +105,10 @@ public class LoginTests extends BaseTest {
     @Test
     public static void loginWrongEmailTest() {
         LoginPage loginPage = new LoginPage(getThreadLocal());
-
+        HomePage homePage = new HomePage(getThreadLocal());
         loginPage.provideEmail("nemanja.sijacic@testpro.io");
         loginPage.providePassword("Vojvodina.021");
         loginPage.clickLoginBtn();
-
 
     }
 
@@ -116,7 +119,8 @@ public class LoginTests extends BaseTest {
         loginPage.provideEmail("nemanja.sijacic@testpro.io");
         loginPage.providePassword("Vojvodina.021");
         loginPage.clickLoginBtn();
-
+        WebElement avatarIcon = loginPage.findElement(By.cssSelector("img[class='avatar']"));
+        Assert.assertTrue(avatarIcon.isDisplayed());
 
     }
 }

@@ -233,8 +233,10 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 
 import java.net.MalformedURLException;
@@ -242,12 +244,15 @@ import java.net.URI;
 import java.net.URL;
 import java.time.Duration;
 
+import static java.sql.DriverManager.getDriver;
+
 public class BaseTest {
 
     private static final ThreadLocal<WebDriver> THREAD_LOCAL = new ThreadLocal<>();
     private WebDriver driver;
 
     public static WebDriver getThreadLocal() {
+
         return THREAD_LOCAL.get();
     }
 
